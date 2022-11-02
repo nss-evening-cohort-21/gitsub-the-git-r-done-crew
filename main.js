@@ -33,5 +33,35 @@ const pinnedRepos = [
 ]
   
 const repoArray = [
+  {
+     id: 1,
+     name: "cards-on-mom",
+     description: "This app randomly generates Mother's Day cards for the engineer too busy coding to buy one at Dollar General.  Just input her name then a few facts and VOILA!  Parental love achieved."
+  },
+  {
+    id: 2,
+    name: "nss-adventure",
+    description: "This app is a text-based RPG that takes you on a quest down the halls of the legendary Nashville Software School.  Evern since the pandemic, the NSS doors have been closed and a mysterious entity has been growing in the shadows..."
+  },
+  {
+    id: 3,
+    name: "home-repo",
+    description: "This app directs you to the nearest home improvement store based on GPS, time of day, and current mood."
+  },
+  {
+    id: 4,
+    name: "object-of-your-affection",
+    description: "This app is a dating game that sets you up with your true love based on a set of data in an object within an array."
+  },
+  {
+    id: 5,
+    name: "unbreak-my-code",
+    description: "This app only fixes the code of websites dedicated to the appreciation of Toni Braxton."
+  },
+  {
+    id: 6,
+    name: "angelfire-filter",
+    description: "This app makes your website look like an angelfire website from circa 2003."
+  }
   
-]
+  ]
