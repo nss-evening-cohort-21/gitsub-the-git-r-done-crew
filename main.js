@@ -32,6 +32,4 @@ const pinnedRepos = [
 
 ]
   
-const repoArray = [
-  
-]
+const repoArray = []
