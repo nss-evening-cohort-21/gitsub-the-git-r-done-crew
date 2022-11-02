@@ -97,7 +97,7 @@ const repoArray = [
   {
     id: 6,
     name: "angelfire-filter",
-    description: "This app makes your website look like an angelfire website from circa 2003."
+    description: "This app makes your website look like an angelfire website from circa 2003.."
   }
   
  
