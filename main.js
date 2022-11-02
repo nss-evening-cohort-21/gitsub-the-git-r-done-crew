@@ -32,6 +32,27 @@ const pinnedRepos = [
 
 ]
   
-const repoArray = [
-  
-]
+const repoArray = []
+
+const renderToDom = (divId, htmlToRender) => {
+  const selectedDiv = document.querySelector(divId);
+  selectedDiv.innerHTML = htmlToRender;
+  };
+
+  const newDataDiv = document.querySelector('#newDataDiv');
+
+  const cardsOnDom = (array) => {
+    let domString = "";
+    for (const card of array) {
+      domString += `<div class="card w-75">
+      <div class="card-body">
+        <h5 class="card-title">${card.name}</h5>
+        <p class="card-text">${card.description}</p>
+      </div>
+    </div>`;
+    }
+    
+    renderToDom("#newDataDiv", domString);
+    }
+
+    cardsOnDom(pinnedRepos);
