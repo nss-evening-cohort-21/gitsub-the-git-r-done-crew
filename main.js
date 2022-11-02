@@ -65,3 +65,22 @@ const repoArray = [
   }
   
   ]
+
+
+const projArray = [
+  {
+    id: 1,
+    name: "Example 1", 
+    description: " Example descrip." 
+  },
+  {
+    id: 2,
+    name: "my-goals", 
+    description: "My goals descrip." 
+  },
+  {
+    id: 3,
+    name: "Sample My Goals", 
+    description: "Goals for the NSS Bootcamp." 
+  }
+];
