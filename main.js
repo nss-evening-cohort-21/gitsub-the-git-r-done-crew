@@ -35,39 +35,3 @@ const pinnedRepos = [
 const repoArray = [
   
 ]
-
-
-const packages = [
-{
-  id: 1,
-  name: "docker",
-  description: "a software platform used for building apps",
-
-},
-{
-  id: 2,
-  name: "apache maven",
-  packageDescription: "a default package manager",
-},
-{  
-  id: 3,
-  name: "nuget",
-  description: "a software platform used for building apps",
-},
-
-{
-  id: 4,
-  name: "ruby gems",
-  description: "a standard format for apps",
-},
-{ 
-  id: 5,
-  name: "containers",
-  description: "a single place for your team",
-},
-{ 
-  id: 6,
-  name: "npm",
-  description: "a single place for your team",
-},
-];
