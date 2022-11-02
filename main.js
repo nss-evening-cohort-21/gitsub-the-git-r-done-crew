@@ -63,8 +63,7 @@ const repoArray = [
     name: "angelfire-filter",
     description: "This app makes your website look like an angelfire website from circa 2003."
   }
-  
-  ]
+  ];
 
 
 const projArray = [
