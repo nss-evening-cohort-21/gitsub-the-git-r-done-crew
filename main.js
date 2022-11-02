@@ -42,7 +42,7 @@ const pinnedRepos = [
   {
     id: 2,
     name: "apache maven",
-    packageDescription: "a default package manager",
+    description: "a default package manager",
   },
   {  
     id: 3,
@@ -100,4 +100,22 @@ const repoArray = [
     description: "This app makes your website look like an angelfire website from circa 2003."
   }
   
-  ];
+ 
+
+const projArray = [
+  {
+    id: 1,
+    name: "Example 1", 
+    description: " Example descrip." 
+  },
+  {
+    id: 2,
+    name: "my-goals", 
+    description: "My goals descrip." 
+  },
+  {
+    id: 3,
+    name: "Sample My Goals", 
+    description: "Goals for the NSS Bootcamp." 
+  }
+];
