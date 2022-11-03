@@ -63,7 +63,7 @@ const pinnedRepos = [
     name: "npm",
     description: "a single place for your team",
   },
-  ];
+];
   
 const repoArray = [
   {
@@ -96,7 +96,117 @@ const repoArray = [
     name: "angelfire-filter",
     description: "This app makes your website look like an angelfire website from circa 2003.."
   }
+
   ];
+
+// Render to DOM
+const renderToDom = (divId, htmlToRender) => {
+  const selectedDiv = document.querySelector(divId);
+  selectedDiv.innerHTML = htmlToRender;
+};
+  
+// Dynamically render navbar
+const navDiv = document.querySelector("#navBar");
+const renderedNavbar = 
+  `
+  <nav class="navbar navbar-expand-lg bg-light">
+  <div>
+    <button class="navbar-brand" id="overviewButton">Overview</button>
+    <button class="navbar-brand" id="repoButton">Repositories</button>
+    <button class="navbar-brand" id="projectsButton">Projects</button>
+    <button class="navbar-brand" id="packagesButton">Packages</button>
+  </div>
+</nav>
+  `;
+navDiv.innerHTML+=renderedNavbar;
+
+
+
+
+
+// Dynamically render footer
+const footDiv = document.querySelector("#footer");
+const renderedFooter = 
+  `
+  this be tha footer!
+  `;
+footDiv.innerHTML+=renderedFooter;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// // Dynamically render sidebar
+// const sideDiv = document.querySelector("#sideBar");
+// const renderedSidebar = 
+//   `
+//   this be tha sidebar!
+//   `;
+// sideDiv.innerHTML+=renderedSidebar;
+
+// // Dynamically render footer
+// const footDiv = document.querySelector("#footer");
+// const renderedFooter = 
+//   `
+//   this be tha footer!
+//   `;
+// footDiv.innerHTML+=renderedFooter;
+
+// // Dynamically render Search Form
+
+// const pageType = 'repository'
+// const searchFormDiv = document.querySelector("#searchForm");
+// const renderedSearch = 
+//   `
+//   <input class="form-control" type="text" placeholder="Find a ${pageType}" aria-label="default input example">
+//   `;
+// searchFormDiv.innerHTML+=renderedSearch;
+
+
+// // Dynamically render New Data Div
+
+// const newDataDivDiv = document.querySelector("#newDataDiv");
+// const renderedNewData = 
+//   `
+//   New Data Div Son!
+//   `;
+// newDataDivDiv.innerHTML+=renderedNewData;
+
+// // Testing theory for one shared card
+// const typeArray = repoArray;
+// typeArray.forEach(taco => console.log(taco.description));
+
+
 
 const projArray = [
   {
