@@ -1,3 +1,16 @@
 body {
-  background-image: url('images/sunroof.png');
+  background-color: darkslategray;
+  color: azure;
+}
+
+strong {
+  color: rgb(95, 213, 45);
+}
+
+.form-text {
+  color: azure;
+}
+
+em {
+  color: darkslategray;
 }
