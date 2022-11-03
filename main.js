@@ -31,6 +31,57 @@ const pinnedRepos = [
   }
 ];
 
+const repoArray = [
+  {
+     id: 1,
+     name: "cards-on-mom",
+     description: "This app randomly generates Mother's Day cards for the engineer too busy coding to buy one at Dollar General.  Just input her name then a few facts and VOILA!  Parental love achieved."
+  },
+  {
+    id: 2,
+    name: "nss-adventure",
+    description: "This app is a text-based RPG that takes you on a quest down the halls of the legendary Nashville Software School.  Evern since the pandemic, the NSS doors have been closed and a mysterious entity has been growing in the shadows..."
+  },
+  {
+    id: 3,
+    name: "home-repo",
+    description: "This app directs you to the nearest home improvement store based on GPS, time of day, and current mood."
+  },
+  {
+    id: 4,
+    name: "object-of-your-affection",
+    description: "This app is a dating game that sets you up with your true love based on a set of data in an object within an array."
+  },
+  {
+    id: 5,
+    name: "unbreak-my-code",
+    description: "This app only fixes the code of websites dedicated to the appreciation of Toni Braxton."
+  },
+  {
+    id: 6,
+    name: "angelfire-filter",
+    description: "This app makes your website look like an angelfire website from circa 2003.."
+  }
+];
+
+const projArray = [
+  {
+    id: 1,
+    name: "Example 1", 
+    description: " Example descrip." 
+  },
+  {
+    id: 2,
+    name: "my-goals", 
+    description: "My goals descrip." 
+  },
+    {
+      id: 3,
+      name: "Sample My Goals", 
+      description: "Goals for the NSS Bootcamp." 
+    }
+];
+
   const packages = [
   {
     id: 1,
@@ -65,40 +116,6 @@ const pinnedRepos = [
   },
 ];
   
-const repoArray = [
-  {
-     id: 1,
-     name: "cards-on-mom",
-     description: "This app randomly generates Mother's Day cards for the engineer too busy coding to buy one at Dollar General.  Just input her name then a few facts and VOILA!  Parental love achieved."
-  },
-  {
-    id: 2,
-    name: "nss-adventure",
-    description: "This app is a text-based RPG that takes you on a quest down the halls of the legendary Nashville Software School.  Evern since the pandemic, the NSS doors have been closed and a mysterious entity has been growing in the shadows..."
-  },
-  {
-    id: 3,
-    name: "home-repo",
-    description: "This app directs you to the nearest home improvement store based on GPS, time of day, and current mood."
-  },
-  {
-    id: 4,
-    name: "object-of-your-affection",
-    description: "This app is a dating game that sets you up with your true love based on a set of data in an object within an array."
-  },
-  {
-    id: 5,
-    name: "unbreak-my-code",
-    description: "This app only fixes the code of websites dedicated to the appreciation of Toni Braxton."
-  },
-  {
-    id: 6,
-    name: "angelfire-filter",
-    description: "This app makes your website look like an angelfire website from circa 2003.."
-  }
-
-  ];
-
 // Render to DOM
 const renderToDom = (divId, htmlToRender) => {
   const selectedDiv = document.querySelector(divId);
@@ -107,7 +124,8 @@ const renderToDom = (divId, htmlToRender) => {
   
 // Dynamically render navbar
 const navDiv = document.querySelector("#navBar");
-const renderedNavbar = 
+const renderedNavbar = () => {
+  const navString =
   `
   <nav class="navbar navbar-expand-lg bg-light">
   <div>
@@ -118,7 +136,62 @@ const renderedNavbar =
   </div>
 </nav>
   `;
-navDiv.innerHTML+=renderedNavbar;
+renderToDom("#navBar", navString)
+};
+
+//Projects Button in Navbar
+const projectsOnDom = (array) => {
+  let domString = "";
+  let topString = `<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#">Open Closed</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDarkDropdown" aria-controls="navbarNavDarkDropdown" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavDarkDropdown">
+      <ul class="navbar-nav">
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Sort
+          </a>
+          <ul class="dropdown-menu dropdown-menu-dark">
+            <li><a class="dropdown-item" href="#">Action</a></li>
+            <li><a class="dropdown-item" href="#">Another action</a></li>
+            <li><a class="dropdown-item" href="#">Something else here</a></li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </div>
+  </nav>`;
+  
+  for (const proj of array) {
+    domString += `
+      <ul class="list-group list-group">
+        <li class="list-group-item d-flex justify-content-between align-items-start">
+          <div class="ms-2 me-auto">
+            <div class="fw-bold">${proj.name}</div>
+            ${proj.description}
+          </div>
+          <span class="bg rounded-pill">•••</span>
+        </li>
+      </ul>
+    `;
+    let projString = topString + domString;
+    renderToDom('#newDataDiv', projString);  
+  }; 
+};
+
+//click event to show Projects
+navDiv.addEventListener('click', event => {
+  if (event.target.id === 'projectsButton') {
+    projectsOnDom(projArray);
+  }
+});
+
+
+
+
 
 
 
@@ -135,8 +208,11 @@ footDiv.innerHTML+=renderedFooter;
 
 
 
-
-
+const startApp = () => {
+  renderedNavbar();
+  
+};
+startApp(); 
 
 
 
@@ -205,23 +281,3 @@ footDiv.innerHTML+=renderedFooter;
 // // Testing theory for one shared card
 // const typeArray = repoArray;
 // typeArray.forEach(taco => console.log(taco.description));
-
-
-
-const projArray = [
-  {
-    id: 1,
-    name: "Example 1", 
-    description: " Example descrip." 
-  },
-  {
-    id: 2,
-    name: "my-goals", 
-    description: "My goals descrip." 
-  },
-  {
-    id: 3,
-    name: "Sample My Goals", 
-    description: "Goals for the NSS Bootcamp." 
-  }
-];
