@@ -31,43 +31,6 @@ const pinnedRepos = [
   }
 ];
 
-  const packages = [
-  {
-    id: 1,
-    name: "docker",
-    description: "a software platform used for building apps",
-  
-
-  },
-  {
-    id: 2,
-    name: "apache maven",
-    description: "a default package manager",
-  },
-  {  
-    id: 3,
-    name: "nuget",
-    description: "a software platform used for building apps",
-  },
-  
-  {
-    id: 4,
-    name: "ruby gems",
-    description: "a standard format for apps",
-  },
-  { 
-    id: 5,
-    name: "containers",
-    description: "a single place for your team",
-  },
-  { 
-    id: 6,
-    name: "npm",
-    description: "a single place for your team",
-  },
-];
-  
-
 const repoArray = [
   {
      id: 1,
@@ -99,8 +62,60 @@ const repoArray = [
     name: "angelfire-filter",
     description: "This app makes your website look like an angelfire website from circa 2003.."
   }
-]
+];
 
+const projArray = [
+  {
+    id: 1,
+    name: "Example 1", 
+    description: " Example descrip." 
+  },
+  {
+    id: 2,
+    name: "my-goals", 
+    description: "My goals descrip." 
+  },
+    {
+      id: 3,
+      name: "Sample My Goals", 
+      description: "Goals for the NSS Bootcamp." 
+    }
+];
+
+  const packages = [
+  {
+    id: 1,
+    name: "docker",
+    description: "a software platform used for building apps",
+  },
+  {
+    id: 2,
+    name: "apache maven",
+    description: "a default package manager",
+  },
+  {  
+    id: 3,
+    name: "nuget",
+    description: "a software platform used for building apps",
+  },
+  
+  {
+    id: 4,
+    name: "ruby gems",
+    description: "a standard format for apps",
+  },
+  { 
+    id: 5,
+    name: "containers",
+    description: "a single place for your team",
+  },
+  { 
+    id: 6,
+    name: "npm",
+    description: "a single place for your team",
+  },
+];
+  
 // Render to DOM
 const renderToDom = (divId, htmlToRender) => {
   const selectedDiv = document.querySelector(divId);
@@ -109,7 +124,8 @@ const renderToDom = (divId, htmlToRender) => {
   
 // Dynamically render navbar
 const navDiv = document.querySelector("#navBar");
-const renderedNavbar = 
+const renderedNavbar = () => {
+  const navString =
   `
   <nav class="navbar navbar-expand-lg bg-light">
   <div>
@@ -120,7 +136,62 @@ const renderedNavbar =
   </div>
 </nav>
   `;
-navDiv.innerHTML+=renderedNavbar;
+renderToDom("#navBar", navString)
+};
+
+//Projects Button in Navbar
+const projectsOnDom = (array) => {
+  let domString = "";
+  let topString = `<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#">Open Closed</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDarkDropdown" aria-controls="navbarNavDarkDropdown" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavDarkDropdown">
+      <ul class="navbar-nav">
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Sort
+          </a>
+          <ul class="dropdown-menu dropdown-menu-dark">
+            <li><a class="dropdown-item" href="#">Action</a></li>
+            <li><a class="dropdown-item" href="#">Another action</a></li>
+            <li><a class="dropdown-item" href="#">Something else here</a></li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </div>
+  </nav>`;
+  
+  for (const proj of array) {
+    domString += `
+      <ul class="list-group list-group">
+        <li class="list-group-item d-flex justify-content-between align-items-start">
+          <div class="ms-2 me-auto">
+            <div class="fw-bold">${proj.name}</div>
+            ${proj.description}
+          </div>
+          <span class="bg rounded-pill">•••</span>
+        </li>
+      </ul>
+    `;
+    let projString = topString + domString;
+    renderToDom('#newDataDiv', projString);  
+  }; 
+};
+
+//click event to show Projects
+navDiv.addEventListener('click', event => {
+  if (event.target.id === 'projectsButton') {
+    projectsOnDom(projArray);
+  }
+});
+
+
+
+
 
 
 
@@ -137,8 +208,11 @@ footDiv.innerHTML+=renderedFooter;
 
 
 
-
-
+const startApp = () => {
+  renderedNavbar();
+  
+};
+startApp(); 
 
 
 
@@ -207,24 +281,3 @@ footDiv.innerHTML+=renderedFooter;
 // // Testing theory for one shared card
 // const typeArray = repoArray;
 // typeArray.forEach(taco => console.log(taco.description));
-
- 
-
-const projArray = [
-  {
-    id: 1,
-    name: "Example 1", 
-    description: " Example descrip." 
-  },
-  {
-    id: 2,
-    name: "my-goals", 
-    description: "My goals descrip." 
-  },
-  {
-    id: 3,
-    name: "Sample My Goals", 
-    description: "Goals for the NSS Bootcamp." 
-  }
-];
-
