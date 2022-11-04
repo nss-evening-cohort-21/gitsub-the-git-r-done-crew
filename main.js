@@ -40,7 +40,7 @@ const repoArray = [
   {
     id: 2,
     name: "nss-adventure",
-    description: "This app is a text-based RPG that takes you on a quest down the halls of the legendary Nashville Software School.  Ever since the pandemic, the NSS doors have been closed and a mysterious entity has been growing in the shadows..."
+    description: "This app is a text-based RPG that takes you on a quest down the halls of the legendary Nashville Software School.  Evern since the pandemic, the NSS doors have been closed and a mysterious entity has been growing in the shadows..."
   },
   {
     id: 3,
@@ -90,13 +90,12 @@ const projArray = [
   }
 ];
 
-const packages = [
+
+  const packages = [
   {
     id: 1,
     name: "docker",
     description: "a software platform used for building apps",
-  
-
   },
   {
     id: 2,
@@ -108,7 +107,6 @@ const packages = [
     name: "nuget",
     description: "a software platform used for building apps",
   },
-  
   {
     id: 4,
     name: "ruby gems",
@@ -125,8 +123,8 @@ const packages = [
     description: "a single place for your team",
   },
 ]; 
-
-// Render functions to DOM
+  
+// Render to DOM
 const renderToDom = (divId, htmlToRender) => {
   const selectedDiv = document.querySelector(divId);
   selectedDiv.innerHTML = htmlToRender;
@@ -136,6 +134,8 @@ const renderToDom = (divId, htmlToRender) => {
 const navDiv = document.querySelector("#navBar");
 
 const navString =
+const renderedNavbar = () => {
+  const navString =
   `
   <nav class="navbar navbar-expand-lg bg-light">
   <div>
@@ -146,6 +146,7 @@ const navString =
   </div>
   </nav>
   `;
+
 navDiv.innerHTML+=navString;
 
 // Puts repo search on DOM
@@ -205,6 +206,63 @@ addRepoForm.addEventListener('click', () => {
   formHolderDiv.innerHTML+=renderedAddRepo;
 })
 
+renderToDom("#navBar", navString)
+};
+
+//Projects Button in Navbar
+const projectsOnDom = (array) => {
+  let domString = "";
+  let topString = `<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#">Open Closed</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDarkDropdown" aria-controls="navbarNavDarkDropdown" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavDarkDropdown">
+      <ul class="navbar-nav">
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Sort
+          </a>
+          <ul class="dropdown-menu dropdown-menu-dark">
+            <li><a class="dropdown-item" href="#">Action</a></li>
+            <li><a class="dropdown-item" href="#">Another action</a></li>
+            <li><a class="dropdown-item" href="#">Something else here</a></li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </div>
+  </nav>`;
+  
+  for (const proj of array) {
+    domString += `
+      <ul class="list-group list-group">
+        <li class="list-group-item d-flex justify-content-between align-items-start">
+          <div class="ms-2 me-auto">
+            <div class="fw-bold">${proj.name}</div>
+            ${proj.description}
+          </div>
+          <span class="bg rounded-pill">•••</span>
+        </li>
+      </ul>
+    `;
+    let projString = topString + domString;
+    renderToDom('#newDataDiv', projString);  
+  }; 
+};
+
+//click event to show Projects
+navDiv.addEventListener('click', event => {
+  if (event.target.id === 'projectsButton') {
+    projectsOnDom(projArray);
+  }
+});
+
+
+
+
+
 
 
 
@@ -235,14 +293,15 @@ footDiv.innerHTML+=renderedFooter;
 
 
 
+
 const startApp = () => {
- 
+  renderedNavbar();
   repoSearch();
   addRepoForm();
+  
+  
 };
-
-startApp();
-
+startApp(); 
 
 
 
@@ -277,5 +336,6 @@ startApp();
 
 
 
-
- 
+// // Testing theory for one shared card
+// const typeArray = repoArray;
+// typeArray.forEach(taco => console.log(taco.description));
