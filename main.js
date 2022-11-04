@@ -166,48 +166,47 @@ const searchFormDiv = document.querySelector("#searchForm");
 // Puts search bar on top of card
 // And displays Repos when you click on 'Repositories' in Navbar
 // And Dynamically renders form that lets you create a repo
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-//PLEASE MERGE THESE CONFLICTS!! 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+navDiv.addEventListener('click', (event) => {
+  if(event.target.id === "repoButton") {
+  const renderedSearch = 
+    `
+    <input class="form-control" type="text" placeholder="Find a repository" aria-label="default input example">
+    `;
+  renderToDom("#searchForm", renderedSearch);
+  repoOnDom(repoArray);  
+  const adj = Math.floor(Math.random()*10);
+  const noun = Math.floor(Math.random()*10);
+  const renderedAddRepo =
+    `
+    <div>
+      <div>Create a Repository</div>
+      <label id = "new-repo-name" class="form-label">Repository Name</label>
+      <input class="form-control">
+      <div class="form-text">
+      Great repository names are short and memorable. Need inspiration? How about <strong>${randomAdj[adj]}-${randomNoun[noun]}</strong>?</div>
+      <div><label id = "new-repo-name" class="form-label">Description (optional)</label>
+      <input class="form-control"></div>
+    </div>
+    `;
+    renderToDom("#formHolder", renderedAddRepo)
+}})
+// repo button clicked, function called w/in another function
+const repoOnDom = (array) => {
+  let domString = "";  // Starts function with empty string
+  // Turns each first year object into an HTML card after you click 'repo' button
+  for (const repo of array) {
+    domString += `
+    <div class="card" style="width: 18rem;">
+      <div class="card-body">
+      <h5 class="card-title repo-name">${repo.name}</h5>
+      <p class="card-text repo-description">${repo.description}</p>
+      </div> 
+    </div>
+    `; 
+    }
+  // Renders HTML cards onto the DOM
+    renderToDom("#newDataDiv", domString);
+  }
 //Projects Button in Navbar
 const projectsOnDom = (array) => {
   const searchProjects = 
