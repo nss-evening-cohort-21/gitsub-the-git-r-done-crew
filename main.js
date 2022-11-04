@@ -64,14 +64,6 @@ const repoArray = [
   }
 ];
 
-const randomAdj = [
-  'arrogant', 'blithering', 'constipated', 'frisky', 'maniacal', 'quixotic', 'sexy', 'territorial', 'vengeful', 'zippy'
-]
-
-const randomNoun = [
-  'chariot', 'pleonasm', 'wizard', 'spigot', 'aglet', 'guitar', 'hermit', 'bicycle', 'internship', 'honeysuckle'
-]
-
 const projArray = [
   {
     id: 1,
@@ -89,7 +81,6 @@ const projArray = [
     description: "Goals for the NSS Bootcamp." 
   }
 ];
-
 
   const packages = [
   {
@@ -123,6 +114,14 @@ const projArray = [
     description: "a single place for your team",
   },
 ]; 
+
+const randomAdj = [
+  'arrogant', 'blithering', 'constipated', 'frisky', 'maniacal', 'quixotic', 'sexy', 'territorial', 'vengeful', 'zippy'
+];
+
+const randomNoun = [
+  'chariot', 'pleonasm', 'wizard', 'spigot', 'aglet', 'guitar', 'hermit', 'bicycle', 'internship', 'honeysuckle'
+];
   
 // Render to DOM
 const renderToDom = (divId, htmlToRender) => {
@@ -132,8 +131,6 @@ const renderToDom = (divId, htmlToRender) => {
   
 // Dynamically render navbar
 const navDiv = document.querySelector("#navBar");
-
-const navString =
 const renderedNavbar = () => {
   const navString =
   `
@@ -146,71 +143,78 @@ const renderedNavbar = () => {
   </div>
   </nav>
   `;
+  renderToDom("#navBar", navString)
+}; 
 
-navDiv.innerHTML+=navString;
+const renderedSidebar = () => {
+  const sideString = 
+  `
+  <div class="card" style="width: 18rem;">
+  <div class="card-body">
+    <h5 class="card-title">Side Bar City</h5>
+    <p class="card-text">Text some text. Text.</p>
+    <a href="#" class="btn btn-primary">Go somewhere</a>
+  </div>
+</div>
+  `;
+  renderToDom("#sideBar", sideString)
+}
 
 // Puts repo search on DOM
 const repoSearch = document.querySelector("#repoButton");
-repoSearch.addEventListener('click', () => {
-  // const searchFormDiv = document.querySelector("#searchForm"); // Puts search bar on top of card
-  const renderedSearch = 
-    `
-    <input class="form-control" type="text" placeholder="Find a repository" aria-label="default input example">
-    `;
-  // searchFormDiv.innerHTML+=renderedSearch;
-  renderToDom("#searchForm", renderedSearch);
-})
-
-const repoOnDom = (array) => {
-  let domString = "";  // Starts function with empty string
-  // Turns each first year object into an HTML card after you click 'repo' button
-  for (const repo of array) {
-    domString += `
-    <div class="card" style="width: 18rem;">
-      <div class="card-body">
-      <h5 class="card-title repo-name">${repo.name}</h5>
-      <p class="card-text repo-description">${repo.description}</p>
-      </div> 
-    </div>
-    `; 
-    }
-  // Renders HTML cards onto the DOM
-    renderToDom("#newDataDiv", domString);
-  }
-
-// Displays Repos when you click on 'Repositories' in Navbar
-const showRepo = document.querySelector("#repoButton");
-showRepo.addEventListener('click', () => {
-  const quesadilla = repoArray;
-  repoOnDom(quesadilla); // repo button clicked, function called w/in another function
-})
+const searchFormDiv = document.querySelector("#searchForm"); 
+// Puts search bar on top of card
+// And displays Repos when you click on 'Repositories' in Navbar
+// And Dynamically renders form that lets you create a repo
 
 
-// Dynamically renders form that lets you create a repo
-const addRepoForm = document.querySelector("#repoButton");
-addRepoForm.addEventListener('click', () => {
-  const adj = Math.floor(Math.random()*10);
-  const noun = Math.floor(Math.random()*10);
-  const formHolderDiv = document.querySelector("#formHolder");
-  const renderedAddRepo =
-    `
-    <div><div>Create a Repository</div>
-    <label id = "new-repo-name" class="form-label">Repository Name</label>
-    <input class="form-control">
-    <div class="form-text">
-    Great repository names are short and memorable. Need inspiration? How about <strong>${randomAdj[adj]}-${randomNoun[noun]}</strong>?
-    <div><label id = "new-repo-name" class="form-label">Description (optional)</label>
-    <input class="form-control"></div>
-    </div>
-    `;
-  formHolderDiv.innerHTML+=renderedAddRepo;
-})
 
-renderToDom("#navBar", navString)
-};
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//PLEASE MERGE THESE CONFLICTS!! 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 //Projects Button in Navbar
 const projectsOnDom = (array) => {
+  const searchProjects = 
+    `
+    <input class="form-control" type="text" placeholder="Search all projects" aria-label="default input example">
+    `;
+  renderToDom("#searchForm", searchProjects);
   let domString = "";
   let topString = `<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
   <div class="container-fluid">
@@ -241,6 +245,7 @@ const projectsOnDom = (array) => {
         <li class="list-group-item d-flex justify-content-between align-items-start">
           <div class="ms-2 me-auto">
             <div class="fw-bold">${proj.name}</div>
+            <div class="form-text">Updated some future property ago</div>
             ${proj.description}
           </div>
           <span class="bg rounded-pill">•••</span>
@@ -249,6 +254,23 @@ const projectsOnDom = (array) => {
     `;
     let projString = topString + domString;
     renderToDom('#newDataDiv', projString);  
+    const projForm =
+    `
+    <form id="projform">
+      <div class="mb-3">
+        <label class="form-label">Create a new project</label>
+        <input type="text" class="form-control" aria-describedby="Project Name" placeholder="Example 2" required>
+      </div>
+      <div class="mb-3">
+        <label for="exampleFormControlTextarea1" class="form-label">Description</label>
+        <div class="form-text">(optional)</div>
+        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+      </div>
+      
+      <button type="submit" class="btn btn-success">Create project</button>
+    </form>
+    `;
+    renderToDom("#formHolder", projForm)
   }; 
 };
 
@@ -270,7 +292,8 @@ navDiv.addEventListener('click', event => {
 
 // Dynamically render footer
 const footDiv = document.querySelector("#footer");
-const renderedFooter = 
+const renderedFooter = () => {
+  const footString = 
   `
   <nav class="navbar navbar-expand-lg bg-light">
   <div id="copyright">
@@ -289,16 +312,15 @@ const renderedFooter =
   </div>
   </nav>
   `;
-footDiv.innerHTML+=renderedFooter;
-
+renderToDom("#footer", footString)  
+};
 
 
 
 const startApp = () => {
   renderedNavbar();
-  repoSearch();
-  addRepoForm();
-  
+  renderedSidebar();
+  renderedFooter();
   
 };
 startApp(); 
