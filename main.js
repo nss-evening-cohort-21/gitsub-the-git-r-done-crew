@@ -155,7 +155,7 @@ navDiv.addEventListener('click', taco => {
     repoOnDom(repoArray);
   }
 });
-=======
+
 
 navDiv.innerHTML+=navString;
 
@@ -237,7 +237,7 @@ formHolderDiv.addEventListener('click', (pleaseholdmyhand) => {
   console.log(repoArray);
 }
 });
-=======
+
 renderToDom("#navBar", navString)
 };
 
@@ -388,17 +388,7 @@ renderToDom("#footer", footString);
 
 const startApp = () => {
   renderedNavbar();
-
-  packagesOnDom()
-
-
   renderedFooter();
-
-  repoSearch();
-  addRepoForm();
-  
-  
-
 };
 startApp(); 
 
