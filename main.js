@@ -133,7 +133,157 @@ const renderedNavbar =
   </div>
 </nav>
   `;
-navDiv.innerHTML+=renderedNavbar;
+<<<<<<< HEAD
+renderToDom("#navBar", navString);
+};
+
+navDiv.addEventListener('click', taco => {
+  if (taco.target.id === 'repoButton') {
+    repoOnDom(repoArray);
+  }
+});
+=======
+
+navDiv.innerHTML+=navString;
+>>>>>>> main
+
+// Puts repo search on DOM
+const repoSearch = document.querySelector("#repoButton");
+navDiv.addEventListener('click', (garbage) => {
+  if (garbage.target.id === "repoButton") {
+  const renderedSearch = 
+    `
+    <input id="ihatethis" class="form-control" type="text" placeholder="Find a repository" aria-label="default input example">
+    `;
+  // searchFormDiv.innerHTML+=renderedSearch;
+  renderToDom("#searchForm", renderedSearch);}
+})
+
+const repoOnDom = (array) => {
+  let domString = "";  // Starts function with empty string
+  // Turns each first year object into an HTML card after you click 'repo' button
+  for (const repo of array) {
+    domString += `
+    <div class="card" style="width: 18rem;">
+      <div class="card-body">
+      <h5 class="card-title repo-name">${repo.name}</h5>
+      <p class="card-text repo-description">${repo.description}</p>
+      </div> 
+    </div>
+    `; 
+    }
+  // Renders HTML cards onto the DOM
+    renderToDom("#newDataDiv", domString);
+}
+
+// Dynamically renders form that lets you create a repo
+navDiv.addEventListener('click', (mypersonalhell) => {
+  if (mypersonalhell.target.id === "repoButton") {
+  const adj = Math.floor(Math.random()*randomAdj.length);
+  const noun = Math.floor(Math.random()*randomNoun.length);
+
+  const renderedAddRepo = 
+    `
+    <form id="i-hate-this-form">
+      <div>Create a Repository</div>
+        <label class="form-label">Repository Name</label>
+        <input class="form-control" id="new-repo-name">
+      <div class="form-text">
+        Great repository names are short and memorable. Need inspiration? How about <strong>${randomAdj[adj]}-${randomNoun[noun]}</strong>?
+      </div>
+      <div><label class="form-label">Description (optional)</label>
+        <input id="new-repo-descrip" class="form-control">
+      </div>
+    <button id="make-repo" type="submit" class="btn btn-success">Create a Repository</button>
+    </form>
+    `;
+    renderToDom("#formHolder", renderedAddRepo)}
+})
+
+<<<<<<< HEAD
+const formHolderDiv = document.querySelector("#formHolder");
+
+formHolderDiv.addEventListener('click', (pleaseholdmyhand) => {
+
+  pleaseholdmyhand.preventDefault();
+
+  if (pleaseholdmyhand.target.id === "make-repo") {
+  const object = {
+    id: repoArray.length+1,
+    name: document.querySelector("#new-repo-name").value,
+    description: document.querySelector("#new-repo-descrip").value
+  }
+  repoArray.push(object);
+
+  // defines form as an HTML element so it can be reset
+  const form = document.querySelector("#i-hate-this-form");
+
+// resets form this project is my greatest failure
+  form.reset();
+
+  repoOnDom(repoArray);
+  console.log(repoArray);
+}
+});
+=======
+renderToDom("#navBar", navString)
+};
+
+//Projects Button in Navbar
+const projectsOnDom = (array) => {
+  let domString = "";
+  let topString = `<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#">Open Closed</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDarkDropdown" aria-controls="navbarNavDarkDropdown" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavDarkDropdown">
+      <ul class="navbar-nav">
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Sort
+          </a>
+          <ul class="dropdown-menu dropdown-menu-dark">
+            <li><a class="dropdown-item" href="#">Action</a></li>
+            <li><a class="dropdown-item" href="#">Another action</a></li>
+            <li><a class="dropdown-item" href="#">Something else here</a></li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </div>
+  </nav>`;
+  
+  for (const proj of array) {
+    domString += `
+      <ul class="list-group list-group">
+        <li class="list-group-item d-flex justify-content-between align-items-start">
+          <div class="ms-2 me-auto">
+            <div class="fw-bold">${proj.name}</div>
+            ${proj.description}
+          </div>
+          <span class="bg rounded-pill">•••</span>
+        </li>
+      </ul>
+    `;
+    let projString = topString + domString;
+    renderToDom('#newDataDiv', projString);  
+  }; 
+};
+
+//click event to show Projects
+navDiv.addEventListener('click', event => {
+  if (event.target.id === 'projectsButton') {
+    projectsOnDom(projArray);
+  }
+});
+
+
+
+
+
+>>>>>>> main
 
 
 
@@ -145,9 +295,24 @@ const renderedFooter =
   `
   this be tha footer!
   `;
-footDiv.innerHTML+=renderedFooter;
+renderToDom("#footer", footString);
+}
 
 
+
+
+const startApp = () => {
+  renderedNavbar();
+<<<<<<< HEAD
+  renderedFooter();
+=======
+  repoSearch();
+  addRepoForm();
+  
+  
+>>>>>>> main
+};
+startApp(); 
 
 
 
