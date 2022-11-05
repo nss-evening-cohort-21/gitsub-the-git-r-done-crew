@@ -64,6 +64,14 @@ const repoArray = [
   }
 ];
 
+const randomAdj = [
+  'arrogant', 'blithering', 'constipated', 'frisky', 'maniacal', 'quixotic', 'sexy', 'territorial', 'vengeful', 'zippy', 'existential', 'universal', 'nervous', 'toxic', 'fleek', 'sarcastic', 'pliable', 'whimsical', 'loyal', 'youthful', 'trustworthy'
+]
+
+const randomNoun = [
+  'chariot', 'pleonasm', 'wizard', 'spigot', 'aglet', 'guitar', 'hermit', 'bicycle', 'internship', 'honeysuckle', 'cornucopia', 'loudspeaker', 'zebra', 'malaise', 'xylophone', 'limosuine', 'toothbrush', 'explosion', 'taco', 'grandmother', 'process'
+]
+
 const projArray = [
   {
     id: 1,
@@ -75,12 +83,13 @@ const projArray = [
     name: "my-goals", 
     description: "My goals descrip." 
   },
-    {
-      id: 3,
-      name: "Sample My Goals", 
-      description: "Goals for the NSS Bootcamp." 
-    }
+  {
+    id: 3,
+    name: "Sample My Goals", 
+    description: "Goals for the NSS Bootcamp." 
+  }
 ];
+
 
   const packages = [
   {
@@ -98,7 +107,6 @@ const projArray = [
     name: "nuget",
     description: "a software platform used for building apps",
   },
-  
   {
     id: 4,
     name: "ruby gems",
@@ -114,7 +122,7 @@ const projArray = [
     name: "npm",
     description: "a single place for your team",
   },
-];
+]; 
   
 // Render to DOM
 const renderToDom = (divId, htmlToRender) => {
@@ -122,8 +130,10 @@ const renderToDom = (divId, htmlToRender) => {
   selectedDiv.innerHTML = htmlToRender;
 };
   
-// Dynamically render navbar
+// Dynamically rendered navbar
 const navDiv = document.querySelector("#navBar");
+const renderedNavbar = () => {
+const navString =
 const renderedNavbar = () => {
   const navString =
   `
@@ -134,8 +144,100 @@ const renderedNavbar = () => {
     <button class="navbar-brand" id="projectsButton">Projects</button>
     <button class="navbar-brand" id="packagesButton">Packages</button>
   </div>
-</nav>
+  </nav>
   `;
+
+renderToDom("#navBar", navString);
+};
+
+navDiv.addEventListener('click', taco => {
+  if (taco.target.id === 'repoButton') {
+    repoOnDom(repoArray);
+  }
+});
+=======
+
+navDiv.innerHTML+=navString;
+
+
+// Puts repo search on DOM
+const repoSearch = document.querySelector("#repoButton");
+navDiv.addEventListener('click', (garbage) => {
+  if (garbage.target.id === "repoButton") {
+  const renderedSearch = 
+    `
+    <input id="ihatethis" class="form-control" type="text" placeholder="Find a repository" aria-label="default input example">
+    `;
+  // searchFormDiv.innerHTML+=renderedSearch;
+  renderToDom("#searchForm", renderedSearch);}
+})
+
+const repoOnDom = (array) => {
+  let domString = "";  // Starts function with empty string
+  // Turns each first year object into an HTML card after you click 'repo' button
+  for (const repo of array) {
+    domString += `
+    <div class="card" style="width: 18rem;">
+      <div class="card-body">
+      <h5 class="card-title repo-name">${repo.name}</h5>
+      <p class="card-text repo-description">${repo.description}</p>
+      </div> 
+    </div>
+    `; 
+    }
+  // Renders HTML cards onto the DOM
+    renderToDom("#newDataDiv", domString);
+}
+
+// Dynamically renders form that lets you create a repo
+navDiv.addEventListener('click', (mypersonalhell) => {
+  if (mypersonalhell.target.id === "repoButton") {
+  const adj = Math.floor(Math.random()*randomAdj.length);
+  const noun = Math.floor(Math.random()*randomNoun.length);
+
+  const renderedAddRepo = 
+    `
+    <form id="i-hate-this-form">
+      <div>Create a Repository</div>
+        <label class="form-label">Repository Name</label>
+        <input class="form-control" id="new-repo-name">
+      <div class="form-text">
+        Great repository names are short and memorable. Need inspiration? How about <strong>${randomAdj[adj]}-${randomNoun[noun]}</strong>?
+      </div>
+      <div><label class="form-label">Description (optional)</label>
+        <input id="new-repo-descrip" class="form-control">
+      </div>
+    <button id="make-repo" type="submit" class="btn btn-success">Create a Repository</button>
+    </form>
+    `;
+    renderToDom("#formHolder", renderedAddRepo)}
+})
+
+const formHolderDiv = document.querySelector("#formHolder");
+
+formHolderDiv.addEventListener('click', (pleaseholdmyhand) => {
+
+  pleaseholdmyhand.preventDefault();
+
+  if (pleaseholdmyhand.target.id === "make-repo") {
+  const object = {
+    id: repoArray.length+1,
+    name: document.querySelector("#new-repo-name").value,
+    description: document.querySelector("#new-repo-descrip").value
+  }
+  repoArray.push(object);
+
+  // defines form as an HTML element so it can be reset
+  const form = document.querySelector("#i-hate-this-form");
+
+// resets form this project is my greatest failure
+  form.reset();
+
+  repoOnDom(repoArray);
+  console.log(repoArray);
+}
+});
+=======
 renderToDom("#navBar", navString)
 };
 
@@ -251,31 +353,60 @@ navDiv.addEventListener('click', event => {
 
 
 
-//deletes package
+
 
 
 
 
 // Dynamically render footer
 const footDiv = document.querySelector("#footer");
-const renderedFooter = 
+const renderedFooter = () => {
+  const footString =
   `
-  this be tha footer!
+  <nav class="navbar navbar-expand-lg bg-light">
+  <div id="copyright">
+    <em>© 2022 FakeBook, Inc. </em> 
+    <a href="#">Terms</a>
+    <a href="#">Privacy</a>
+    <a href="#">Security</a>
+    <a href="#">Status</a>
+    <a href="#">Help</a>
+    <a href="#">Contact FakeBook</a>
+    <a href="#">Pricing</a>
+    <a href="#">API</a>
+    <a href="#">Training</a>
+    <a href="#">Blog</a>
+    <a href="#">About</a>
+  </div>
+  </nav>
   `;
-footDiv.innerHTML+=renderedFooter;
+renderToDom("#footer", footString);
+}
 
 
 
 
 const startApp = () => {
   renderedNavbar();
+
   packagesOnDom()
+
+
+  renderedFooter();
+
+  repoSearch();
+  addRepoForm();
+  
+  
+
 };
 startApp(); 
 
 
 
 
+  
+ 
 
 
 
@@ -301,41 +432,14 @@ startApp();
 
 
 
-// // Dynamically render sidebar
-// const sideDiv = document.querySelector("#sideBar");
-// const renderedSidebar = 
-//   `
-//   this be tha sidebar!
-//   `;
-// sideDiv.innerHTML+=renderedSidebar;
-
-// // Dynamically render footer
-// const footDiv = document.querySelector("#footer");
-// const renderedFooter = 
-//   `
-//   this be tha footer!
-//   `;
-// footDiv.innerHTML+=renderedFooter;
-
-// // Dynamically render Search Form
-
-// const pageType = 'repository'
-// const searchFormDiv = document.querySelector("#searchForm");
-// const renderedSearch = 
-//   `
-//   <input class="form-control" type="text" placeholder="Find a ${pageType}" aria-label="default input example">
-//   `;
-// searchFormDiv.innerHTML+=renderedSearch;
 
 
-// // Dynamically render New Data Div
 
-// const newDataDivDiv = document.querySelector("#newDataDiv");
-// const renderedNewData = 
-//   `
-//   New Data Div Son!
-//   `;
-// newDataDivDiv.innerHTML+=renderedNewData;
+
+
+
+
+
 
 // // Testing theory for one shared card
 // const typeArray = repoArray;
