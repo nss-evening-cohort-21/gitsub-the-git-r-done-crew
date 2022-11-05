@@ -163,13 +163,12 @@ navDiv.addEventListener('click', (garbage) => {
     `
     <input id="ihatethis" class="form-control" type="text" placeholder="Find a repository" aria-label="default input example">
     `;
-  // searchFormDiv.innerHTML+=renderedSearch;
   renderToDom("#searchForm", renderedSearch);}
 })
 
 const repoOnDom = (array) => {
   let domString = "";  // Starts function with empty string
-  // Turns each first year object into an HTML card after you click 'repo' button
+  // Takes material from object and puts it into an HTML card after you click 'repo' button
   for (const repo of array) {
     domString += `
     <div class="card" style="width: 18rem;">
@@ -189,7 +188,6 @@ navDiv.addEventListener('click', (mypersonalhell) => {
   if (mypersonalhell.target.id === "repoButton") {
   const adj = Math.floor(Math.random()*randomAdj.length);
   const noun = Math.floor(Math.random()*randomNoun.length);
-
   const renderedAddRepo = 
     `
     <form id="i-hate-this-form">
@@ -311,11 +309,7 @@ renderToDom("#footer", footString);
 
 const startApp = () => {
   renderedNavbar();
-
   renderedFooter();
-  
-  
-
 };
 startApp(); 
 
