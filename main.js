@@ -76,20 +76,29 @@ const projArray = [
   {
     id: 1,
     name: "Example 1", 
-    description: " Example descrip." 
+    description: " Example description." 
   },
   {
     id: 2,
     name: "my-goals", 
-    description: "My goals descrip." 
+    description: "My goals description." 
   },
   {
     id: 3,
     name: "Sample My Goals", 
     description: "Goals for the NSS Bootcamp." 
+  },
+  {
+    id: 4,
+    name: "Project Example 4", 
+    description: "Lorem ipsum dolor sit amet." 
+  },
+  {
+    id: 5,
+    name: "Project Example 5", 
+    description: "Work in progress." 
   }
 ];
-
 
   const packages = [
   {
@@ -144,9 +153,23 @@ const renderedNavbar = () => {
   </div>
   </nav>
   `;
+  renderToDom("#navBar", navString)
+}; 
 
-renderToDom("#navBar", navString);
-};
+
+const renderedSidebar = () => {
+  const sideString = 
+  `
+  <div class="card" style="width: 18rem;">
+  <div class="card-body">
+    <h5 class="card-title">Side Bar City</h5>
+    <p class="card-text">Text some text. Text.</p>
+    <a href="#" class="btn btn-primary">Go somewhere</a>
+  </div>
+</div>
+  `;
+  renderToDom("#sideBar", sideString)
+}
 
 navDiv.addEventListener('click', taco => {
   if (taco.target.id === 'repoButton') {
@@ -158,13 +181,14 @@ navDiv.addEventListener('click', taco => {
 const repoSearch = document.querySelector("#repoButton");
 navDiv.addEventListener('click', (garbage) => {
   if (garbage.target.id === "repoButton") {
+
   const renderedSearch = 
     `
     <input id="ihatethis" class="form-control" type="text" placeholder="Find a repository" aria-label="default input example">
     `;
-  renderToDom("#searchForm", renderedSearch);}
-})
-
+  renderToDom("#searchForm", renderedSearch);
+  })
+  
 const repoOnDom = (array) => {
   let domString = "";  // Starts function with empty string
   // Takes material from object and puts it into an HTML card after you click 'repo' button
@@ -180,6 +204,15 @@ const repoOnDom = (array) => {
     }
   // Renders HTML cards onto the DOM
     renderToDom("#newDataDiv", domString);
+  }
+
+//Projects Button in Navbar
+const projectsTopSection = () => {
+  const searchProjects = 
+    `
+    <input class="form-control" type="text" placeholder="Search all projects" aria-label="default input example">
+    `;
+  let navString = `<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
 }
 
 // Dynamically renders form that lets you create a repo
@@ -255,28 +288,59 @@ const projectsOnDom = (array) => {
     </div>
   </div>
   </nav>`;
-  
-  for (const proj of array) {
-    domString += `
+  const upperString = searchProjects + navString;
+  renderToDom("#searchForm", upperString);
+};
+
+  const projectsOnDom = (aDiv, array) => {
+    let projString = ""; 
+    for (const proj of array) {
+    projString += `
       <ul class="list-group list-group">
         <li class="list-group-item d-flex justify-content-between align-items-start">
           <div class="ms-2 me-auto">
             <div class="fw-bold">${proj.name}</div>
+            <div class="form-text">Updated some future property ago</div>
             ${proj.description}
           </div>
           <span class="bg rounded-pill">•••</span>
         </li>
       </ul>
     `;
-    let projString = topString + domString;
-    renderToDom('#newDataDiv', projString);  
+    };
+    renderToDom(aDiv, projString);  
+  };
+  
+  
+
+  const projectsBottomSection = () => {
+    const projForm =
+    `
+    <form id="projform">
+      <div class="mb-3">
+        <label class="form-label">Create a new project</label>
+        <input type="text" class="form-control" id="projname" aria-describedby="Project Name" placeholder="Example 2" required>
+      </div>
+      <div class="mb-3">
+        <label for="exampleFormControlTextarea1" class="form-label">Description</label>
+        <div class="form-text">(optional)</div>
+        <input type="text" class="form-control" id="projectdescription" rows="3"></input>
+      </div>
+      
+      <button type="submit" class="btn btn-success" id="projectsubmit">Create project</button>
+    </form>
+    `;
+    renderToDom("#formHolder", projForm);
   }; 
-};
+ 
 
 //click event to show Projects
 navDiv.addEventListener('click', event => {
   if (event.target.id === 'projectsButton') {
-    projectsOnDom(projArray);
+    projectsTopSection();
+    projectsOnDom('#newDataDiv', projArray);
+    projectsBottomSection(); 
+
   }
 });
 
@@ -339,8 +403,38 @@ navDiv.addEventListener('click', event => {
 
 
 
+// ****** CREATE NEW PROJECT BUTTON FUNCTION ****** //
+// to create unique ID. ticket explained: https://github.com/orgs/nss-evening-web-development/discussions/126 
+const createId = (array) => {
+  if (array.length) {
+    const idArray = [];
+    for (const el of array) {
+      idArray.push(el.id);
+    }
+    return Math.max(...idArray) + 1;
+  } else {
+    return 0;
+  }
+};
 
-
+const formHolderDiv = document.querySelector("#projForm");
+const createProject = (event) => {
+  event.preventDefault(); // EVERY TIME YOU CREATE A FORM, so it doesn't reset entirely
+  const newProjObj = { 
+    id: createId(projArray), //students.length + 1, 
+    name: document.querySelector("#projname").value,
+    description: document.querySelector("#projectdescription").value, 
+}; 
+//to test 
+//console.log(newProjObj); 
+projArray.push(newProjObj);
+const form = document.querySelector("#projform");
+form.reset(); 
+projectsOnDom("#newDataDiv", projArray);
+};
+// you can't add an event listener, to something that hasn't been rendered
+//Add an event listener for the form submit and pass it the function (callback)
+document.addEventListener('submit', createProject);
 
 
 
@@ -369,17 +463,15 @@ const renderedFooter = () => {
   </div>
   </nav>
   `;
-renderToDom("#footer", footString);
-}
+renderToDom("#footer", footString)  
+};
+
+
 
 const startApp = () => {
   renderedNavbar();
+  renderedSidebar();
   renderedFooter();
+  
 };
 startApp(); 
-
-
-
-
-  
- 
