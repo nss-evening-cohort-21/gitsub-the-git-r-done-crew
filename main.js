@@ -133,8 +133,6 @@ const renderToDom = (divId, htmlToRender) => {
 // Dynamically rendered navbar
 const navDiv = document.querySelector("#navBar");
 const renderedNavbar = () => {
-const navString =
-const renderedNavbar = () => {
   const navString =
   `
   <nav class="navbar navbar-expand-lg bg-light">
@@ -156,10 +154,6 @@ navDiv.addEventListener('click', taco => {
   }
 });
 
-
-navDiv.innerHTML+=navString;
-
-
 // Puts repo search on DOM
 const repoSearch = document.querySelector("#repoButton");
 navDiv.addEventListener('click', (garbage) => {
@@ -168,13 +162,12 @@ navDiv.addEventListener('click', (garbage) => {
     `
     <input id="ihatethis" class="form-control" type="text" placeholder="Find a repository" aria-label="default input example">
     `;
-  // searchFormDiv.innerHTML+=renderedSearch;
   renderToDom("#searchForm", renderedSearch);}
 })
 
 const repoOnDom = (array) => {
   let domString = "";  // Starts function with empty string
-  // Turns each first year object into an HTML card after you click 'repo' button
+  // Takes material from object and puts it into an HTML card after you click 'repo' button
   for (const repo of array) {
     domString += `
     <div class="card" style="width: 18rem;">
@@ -194,7 +187,6 @@ navDiv.addEventListener('click', (mypersonalhell) => {
   if (mypersonalhell.target.id === "repoButton") {
   const adj = Math.floor(Math.random()*randomAdj.length);
   const noun = Math.floor(Math.random()*randomNoun.length);
-
   const renderedAddRepo = 
     `
     <form id="i-hate-this-form">
@@ -237,9 +229,6 @@ formHolderDiv.addEventListener('click', (pleaseholdmyhand) => {
   console.log(repoArray);
 }
 });
-
-renderToDom("#navBar", navString)
-};
 
 //Projects Button in Navbar
 const projectsOnDom = (array) => {
@@ -290,7 +279,6 @@ navDiv.addEventListener('click', event => {
     projectsOnDom(projArray);
   }
 });
-
 
 //adds pkgs on Dom
 const packagesOnDom = (array) => {
@@ -358,6 +346,7 @@ navDiv.addEventListener('click', event => {
 
 
 
+
 // Dynamically render footer
 const footDiv = document.querySelector("#footer");
 const renderedFooter = () => {
@@ -383,9 +372,6 @@ const renderedFooter = () => {
 renderToDom("#footer", footString);
 }
 
-
-
-
 const startApp = () => {
   renderedNavbar();
   renderedFooter();
@@ -397,40 +383,3 @@ startApp();
 
   
  
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// // Testing theory for one shared card
-// const typeArray = repoArray;
-// typeArray.forEach(taco => console.log(taco.description));
