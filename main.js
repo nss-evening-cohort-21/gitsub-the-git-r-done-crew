@@ -31,43 +31,6 @@ const pinnedRepos = [
   }
 ];
 
-  const packages = [
-  {
-    id: 1,
-    name: "docker",
-    description: "a software platform used for building apps",
-  
-
-  },
-  {
-    id: 2,
-    name: "apache maven",
-    description: "a default package manager",
-  },
-  {  
-    id: 3,
-    name: "nuget",
-    description: "a software platform used for building apps",
-  },
-  
-  {
-    id: 4,
-    name: "ruby gems",
-    description: "a standard format for apps",
-  },
-  { 
-    id: 5,
-    name: "containers",
-    description: "a single place for your team",
-  },
-  { 
-    id: 6,
-    name: "npm",
-    description: "a single place for your team",
-  },
-  ];
-  
-
 const repoArray = [
   {
      id: 1,
@@ -100,7 +63,14 @@ const repoArray = [
     description: "This app makes your website look like an angelfire website from circa 2003.."
   }
 ];
- 
+
+const randomAdj = [
+  'arrogant', 'blithering', 'constipated', 'frisky', 'maniacal', 'quixotic', 'sexy', 'territorial', 'vengeful', 'zippy', 'existential', 'universal', 'nervous', 'toxic', 'fleek', 'sarcastic', 'pliable', 'whimsical', 'loyal', 'youthful', 'trustworthy'
+]
+
+const randomNoun = [
+  'chariot', 'pleonasm', 'wizard', 'spigot', 'aglet', 'guitar', 'hermit', 'bicycle', 'internship', 'honeysuckle', 'cornucopia', 'loudspeaker', 'zebra', 'malaise', 'xylophone', 'limosuine', 'toothbrush', 'explosion', 'taco', 'grandmother', 'process'
+]
 
 const projArray = [
   {
@@ -108,14 +78,147 @@ const projArray = [
     name: "Example 1", 
     description: " Example descrip." 
   },
+];
+  
+
+  const packages = [
   {
-    id: 2,
-    name: "my-goals", 
-    description: "My goals descrip." 
+    id: 1,
+    name: "docker",
+    description: "a software platform used for building apps",
   },
   {
+    id: 2,
+    name: "apache maven",
+    description: "a default package manager",
+  },
+  {  
     id: 3,
-    name: "Sample My Goals", 
-    description: "Goals for the NSS Bootcamp." 
+    name: "nuget",
+    description: "a software platform used for building apps",
+  },
+  {
+    id: 4,
+    name: "ruby gems",
+    description: "a standard format for apps",
+  },
+  { 
+    id: 5,
+    name: "containers",
+    description: "a single place for your team",
+  },
+  { 
+    id: 6,
+    name: "angelfire-filter",
+    description: "This app makes your website look like an angelfire website from circa 2003.."
   }
-];
+]
+
+// Render to DOM
+const renderToDom = (divId, htmlToRender) => {
+  const selectedDiv = document.querySelector(divId);
+  selectedDiv.innerHTML = htmlToRender;
+};
+  
+// Dynamically render navbar
+const navDiv = document.querySelector("#navBar");
+const renderedNavbar = 
+  `
+  <nav class="navbar navbar-expand-lg bg-light">
+  <div>
+    <button class="navbar-brand" id="overviewButton">Overview</button>
+    <button class="navbar-brand" id="repoButton">Repositories</button>
+    <button class="navbar-brand" id="projectsButton">Projects</button>
+    <button class="navbar-brand" id="packagesButton">Packages</button>
+  </div>
+</nav>
+  `;
+navDiv.innerHTML+=renderedNavbar;
+
+
+
+
+
+// Dynamically render footer
+const footDiv = document.querySelector("#footer");
+const renderedFooter = 
+  `
+  this be tha footer!
+  `;
+footDiv.innerHTML+=renderedFooter;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// // Dynamically render sidebar
+// const sideDiv = document.querySelector("#sideBar");
+// const renderedSidebar = 
+//   `
+//   this be tha sidebar!
+//   `;
+// sideDiv.innerHTML+=renderedSidebar;
+
+// // Dynamically render footer
+// const footDiv = document.querySelector("#footer");
+// const renderedFooter = 
+//   `
+//   this be tha footer!
+//   `;
+// footDiv.innerHTML+=renderedFooter;
+
+// // Dynamically render Search Form
+
+// const pageType = 'repository'
+// const searchFormDiv = document.querySelector("#searchForm");
+// const renderedSearch = 
+//   `
+//   <input class="form-control" type="text" placeholder="Find a ${pageType}" aria-label="default input example">
+//   `;
+// searchFormDiv.innerHTML+=renderedSearch;
+
+
+// // Dynamically render New Data Div
+
+// const newDataDivDiv = document.querySelector("#newDataDiv");
+// const renderedNewData = 
+//   `
+//   New Data Div Son!
+//   `;
+// newDataDivDiv.innerHTML+=renderedNewData;
+
+// // Testing theory for one shared card
+// const typeArray = repoArray;
+// typeArray.forEach(taco => console.log(taco.description));
+
+ 
