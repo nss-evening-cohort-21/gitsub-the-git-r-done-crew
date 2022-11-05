@@ -65,11 +65,11 @@ const repoArray = [
 ];
 
 const randomAdj = [
-  'arrogant', 'blithering', 'constipated', 'frisky', 'maniacal', 'quixotic', 'sexy', 'territorial', 'vengeful', 'zippy'
+  'arrogant', 'blithering', 'constipated', 'frisky', 'maniacal', 'quixotic', 'sexy', 'territorial', 'vengeful', 'zippy', 'existential', 'universal', 'nervous', 'toxic', 'fleek', 'sarcastic', 'pliable', 'whimsical', 'loyal', 'youthful', 'trustworthy'
 ]
 
 const randomNoun = [
-  'chariot', 'pleonasm', 'wizard', 'spigot', 'aglet', 'guitar', 'hermit', 'bicycle', 'internship', 'honeysuckle'
+  'chariot', 'pleonasm', 'wizard', 'spigot', 'aglet', 'guitar', 'hermit', 'bicycle', 'internship', 'honeysuckle', 'cornucopia', 'loudspeaker', 'zebra', 'malaise', 'xylophone', 'limosuine', 'toothbrush', 'explosion', 'taco', 'grandmother', 'process'
 ]
 
 const projArray = [
@@ -130,9 +130,9 @@ const renderToDom = (divId, htmlToRender) => {
   selectedDiv.innerHTML = htmlToRender;
 };
   
-// Dynamically render navbar
+// Dynamically rendered navbar
 const navDiv = document.querySelector("#navBar");
-
+const renderedNavbar = () => {
 const navString =
 const renderedNavbar = () => {
   const navString =
@@ -146,19 +146,30 @@ const renderedNavbar = () => {
   </div>
   </nav>
   `;
+<<<<<<< HEAD
+renderToDom("#navBar", navString);
+};
+
+navDiv.addEventListener('click', taco => {
+  if (taco.target.id === 'repoButton') {
+    repoOnDom(repoArray);
+  }
+});
+=======
 
 navDiv.innerHTML+=navString;
+>>>>>>> main
 
 // Puts repo search on DOM
 const repoSearch = document.querySelector("#repoButton");
-repoSearch.addEventListener('click', () => {
-  // const searchFormDiv = document.querySelector("#searchForm"); // Puts search bar on top of card
+navDiv.addEventListener('click', (garbage) => {
+  if (garbage.target.id === "repoButton") {
   const renderedSearch = 
     `
-    <input class="form-control" type="text" placeholder="Find a repository" aria-label="default input example">
+    <input id="ihatethis" class="form-control" type="text" placeholder="Find a repository" aria-label="default input example">
     `;
   // searchFormDiv.innerHTML+=renderedSearch;
-  renderToDom("#searchForm", renderedSearch);
+  renderToDom("#searchForm", renderedSearch);}
 })
 
 const repoOnDom = (array) => {
@@ -176,36 +187,58 @@ const repoOnDom = (array) => {
     }
   // Renders HTML cards onto the DOM
     renderToDom("#newDataDiv", domString);
-  }
-
-// Displays Repos when you click on 'Repositories' in Navbar
-const showRepo = document.querySelector("#repoButton");
-showRepo.addEventListener('click', () => {
-  const quesadilla = repoArray;
-  repoOnDom(quesadilla); // repo button clicked, function called w/in another function
-})
-
+}
 
 // Dynamically renders form that lets you create a repo
-const addRepoForm = document.querySelector("#repoButton");
-addRepoForm.addEventListener('click', () => {
-  const adj = Math.floor(Math.random()*10);
-  const noun = Math.floor(Math.random()*10);
-  const formHolderDiv = document.querySelector("#formHolder");
-  const renderedAddRepo =
+navDiv.addEventListener('click', (mypersonalhell) => {
+  if (mypersonalhell.target.id === "repoButton") {
+  const adj = Math.floor(Math.random()*randomAdj.length);
+  const noun = Math.floor(Math.random()*randomNoun.length);
+
+  const renderedAddRepo = 
     `
-    <div><div>Create a Repository</div>
-    <label id = "new-repo-name" class="form-label">Repository Name</label>
-    <input class="form-control">
-    <div class="form-text">
-    Great repository names are short and memorable. Need inspiration? How about <strong>${randomAdj[adj]}-${randomNoun[noun]}</strong>?
-    <div><label id = "new-repo-name" class="form-label">Description (optional)</label>
-    <input class="form-control"></div>
-    </div>
+    <form id="i-hate-this-form">
+      <div>Create a Repository</div>
+        <label class="form-label">Repository Name</label>
+        <input class="form-control" id="new-repo-name">
+      <div class="form-text">
+        Great repository names are short and memorable. Need inspiration? How about <strong>${randomAdj[adj]}-${randomNoun[noun]}</strong>?
+      </div>
+      <div><label class="form-label">Description (optional)</label>
+        <input id="new-repo-descrip" class="form-control">
+      </div>
+    <button id="make-repo" type="submit" class="btn btn-success">Create a Repository</button>
+    </form>
     `;
-  formHolderDiv.innerHTML+=renderedAddRepo;
+    renderToDom("#formHolder", renderedAddRepo)}
 })
 
+<<<<<<< HEAD
+const formHolderDiv = document.querySelector("#formHolder");
+
+formHolderDiv.addEventListener('click', (pleaseholdmyhand) => {
+
+  pleaseholdmyhand.preventDefault();
+
+  if (pleaseholdmyhand.target.id === "make-repo") {
+  const object = {
+    id: repoArray.length+1,
+    name: document.querySelector("#new-repo-name").value,
+    description: document.querySelector("#new-repo-descrip").value
+  }
+  repoArray.push(object);
+
+  // defines form as an HTML element so it can be reset
+  const form = document.querySelector("#i-hate-this-form");
+
+// resets form this project is my greatest failure
+  form.reset();
+
+  repoOnDom(repoArray);
+  console.log(repoArray);
+}
+});
+=======
 renderToDom("#navBar", navString)
 };
 
@@ -263,6 +296,7 @@ navDiv.addEventListener('click', event => {
 
 
 
+>>>>>>> main
 
 
 
@@ -270,7 +304,8 @@ navDiv.addEventListener('click', event => {
 
 // Dynamically render footer
 const footDiv = document.querySelector("#footer");
-const renderedFooter = 
+const renderedFooter = () => {
+  const footString =
   `
   <nav class="navbar navbar-expand-lg bg-light">
   <div id="copyright">
@@ -289,19 +324,30 @@ const renderedFooter =
   </div>
   </nav>
   `;
-footDiv.innerHTML+=renderedFooter;
+renderToDom("#footer", footString);
+}
 
 
 
 
 const startApp = () => {
   renderedNavbar();
+<<<<<<< HEAD
+  renderedFooter();
+=======
   repoSearch();
   addRepoForm();
   
   
+>>>>>>> main
 };
 startApp(); 
+
+
+
+
+  
+ 
 
 
 
