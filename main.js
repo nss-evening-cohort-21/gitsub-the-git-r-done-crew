@@ -142,18 +142,6 @@ const renderToDom = (divId, htmlToRender) => {
 // Dynamically render navbar
 const navDiv = document.querySelector("#navBar");
 const renderedNavbar = () => {
-<<<<<<< HEAD
-    `
-    @@ -134,8 +144,100 @@ const renderedNavbar = () => {
-      <button class="navbar-brand" id="projectsButton">Projects</button>
-      <button class="navbar-brand" id="packagesButton">Packages</button>
-    </div>
-    </nav>
-    `;
-  
-  renderToDom("#navBar", navString);
-  };
-=======
   const navString =
   `
   <nav class="navbar navbar-expand-lg bg-light">
@@ -182,18 +170,12 @@ const renderedSidebar = () => {
   `;
   renderToDom("#sideBar", sideString)
 }
->>>>>>> main
 
 navDiv.addEventListener('click', taco => {
   if (taco.target.id === 'repoButton') {
     repoOnDom(repoArray);
   }
 });
-<<<<<<< HEAD
-
-navDiv.innerHTML+=navString;
-=======
->>>>>>> main
 
 // Puts repo search on DOM
 const repoSearch = document.querySelector("#repoButton");
@@ -205,7 +187,7 @@ navDiv.addEventListener('click', (garbage) => {
     <input id="ihatethis" class="form-control" type="text" placeholder="Find a repository" aria-label="default input example">
     `;
   renderToDom("#searchForm", renderedSearch);
-  })
+  }
   
 const repoOnDom = (array) => {
   let domString = "";  // Starts function with empty string
@@ -230,7 +212,7 @@ const projectsTopSection = () => {
     `
     <input class="form-control" type="text" placeholder="Search all projects" aria-label="default input example">
     `;
-  let navString = `<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  let navString = `<nav class="navbar navbar-expand-lg navbar-dark bg-dark">`
 }
 
 // Dynamically renders form that lets you create a repo
@@ -256,6 +238,7 @@ navDiv.addEventListener('click', (mypersonalhell) => {
     renderToDom("#formHolder", renderedAddRepo)}
 })
 
+
 const formHolderDiv = document.querySelector("#formHolder");
 
 formHolderDiv.addEventListener('click', (pleaseholdmyhand) => {
@@ -274,46 +257,15 @@ formHolderDiv.addEventListener('click', (pleaseholdmyhand) => {
   const form = document.querySelector("#i-hate-this-form");
 
 // resets form this project is my greatest failure
-<<<<<<< HEAD
-=======
   form.reset();
 
   repoOnDom(repoArray);
   console.log(repoArray);
 }
 });
->>>>>>> main
 
 //Projects Button in Navbar
-const projectsOnDom = (array) => {
-  let domString = "";
-  let topString = `<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-  <div class="container-fluid">
-    <a class="navbar-brand" href="#">Open Closed</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDarkDropdown" aria-controls="navbarNavDarkDropdown" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarNavDarkDropdown">
-      <ul class="navbar-nav">
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            Sort
-          </a>
-          <ul class="dropdown-menu dropdown-menu-dark">
-            <li><a class="dropdown-item" href="#">Action</a></li>
-            <li><a class="dropdown-item" href="#">Another action</a></li>
-            <li><a class="dropdown-item" href="#">Something else here</a></li>
-          </ul>
-        </li>
-      </ul>
-    </div>
-  </div>
-  </nav>`;
-  const upperString = searchProjects + navString;
-  renderToDom("#searchForm", upperString);
-};
-
-  const projectsOnDom = (aDiv, array) => {
+const projectsOnDom = (aDiv, array) => {
     let projString = ""; 
     for (const proj of array) {
     projString += `
@@ -400,8 +352,6 @@ renderToDom("#formHolder", pkgsForm);
 
 
 
-<<<<<<< HEAD
-=======
 
 
 
@@ -459,7 +409,6 @@ projectsOnDom("#newDataDiv", projArray);
 //Add an event listener for the form submit and pass it the function (callback)
 document.addEventListener('submit', createProject);
 
->>>>>>> main
 
 
 
@@ -478,92 +427,8 @@ renderToDom("#footer", footString)
 
 const startApp = () => {
   renderedNavbar();
-<<<<<<< HEAD
-  renderedFooter();
-  repoSearch();
-  addRepoForm();
-  
-  
-};
-startApp(); 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// // Dynamically render sidebar
-// const sideDiv = document.querySelector("#sideBar");
-// const renderedSidebar = 
-//   `
-//   this be tha sidebar!
-//   `;
-// sideDiv.innerHTML+=renderedSidebar;
-
-// // Dynamically render footer
-// const footDiv = document.querySelector("#footer");
-// const renderedFooter = 
-//   `
-//   this be tha footer!
-//   `;
-// footDiv.innerHTML+=renderedFooter;
-
-// // Dynamically render Search Form
-
-// const pageType = 'repository'
-// const searchFormDiv = document.querySelector("#searchForm");
-// const renderedSearch = 
-//   `
-//   <input class="form-control" type="text" placeholder="Find a ${pageType}" aria-label="default input example">
-//   `;
-// searchFormDiv.innerHTML+=renderedSearch;
-
-
-// // Dynamically render New Data Div
-
-// const newDataDivDiv = document.querySelector("#newDataDiv");
-// const renderedNewData = 
-//   `
-//   New Data Div Son!
-//   `;
-// newDataDivDiv.innerHTML+=renderedNewData;
-
-// // Testing theory for one shared card
-// const typeArray = repoArray;
-// typeArray.forEach(taco => console.log(taco.description));
-
-})
-=======
   renderedSidebar();
   renderedFooter();
   
 };
 startApp(); 
->>>>>>> main
