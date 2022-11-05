@@ -190,9 +190,68 @@ navDiv.addEventListener('click', event => {
 });
 
 
+//adds pkgs on Dom
+const packagesOnDom = (array) => {
+  let domString = ""; 
+  for (const packages of array) {
+    domString += `<div class="card flex-wrap" style="width: 18rem;">
+    <div class="card-body">
+      <h5 class="card-title">${packages.name}</h5>
+      <p class="card-text">${packages.description}</p>
+      <button class="btn btn-primary" >Learn More</button>
+    </div>
+  </div>`;
+  }
+  renderToDom("#newDataDiv", domString);
+};
+const pkgsForm = 
+`
+<form id="pkgsform">
+  <div class="mb-3">
+    <label class="form-label">Create new package</label>
+    <input type="text" class="form-control" aria-describedby="Package Name" placeholder="package name" required>
+  </div>
+  <div class="mb-3">
+    <label for="exampleFormControlTextarea1" class="form-label">Description</label>
+    <div class="form-text">(optional)</div>
+    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+  </div>
+  
+  <button type="submit" class="btn btn-success" id="createPackagesBtn">Create packages</button>
+</form>
+`;
+renderToDom("#formHolder", pkgsForm);
 
 
 
+
+
+
+
+
+//deletes pkg
+
+//if (e.target.id.includes("delete")) {
+  //const [, id] = e.target.id.split("--");
+  //const index = packages.findIndex(e => e.id === Number(id));
+  //const removed = packages.splice(index, 1); 
+  //packages.push(removed[0]);
+  //packagesOnDom(packages);
+  
+
+
+navDiv.addEventListener('click', event => {
+  if (event.target.id === 'packagesButton') {
+    packagesOnDom(packages);
+  }
+});
+//Creates package
+
+
+
+
+
+//deletes package
 
 
 
@@ -210,7 +269,7 @@ footDiv.innerHTML+=renderedFooter;
 
 const startApp = () => {
   renderedNavbar();
-  
+  packagesOnDom()
 };
 startApp(); 
 
