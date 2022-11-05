@@ -122,30 +122,25 @@ const renderToDom = (divId, htmlToRender) => {
   
 // Dynamically render navbar
 const navDiv = document.querySelector("#navBar");
-const renderedNavbar = 
-  `
-  <nav class="navbar navbar-expand-lg bg-light">
-  <div>
-    <button class="navbar-brand" id="overviewButton">Overview</button>
-    <button class="navbar-brand" id="repoButton">Repositories</button>
-    <button class="navbar-brand" id="projectsButton">Projects</button>
-    <button class="navbar-brand" id="packagesButton">Packages</button>
-  </div>
-</nav>
-  `;
-<<<<<<< HEAD
-renderToDom("#navBar", navString);
-};
+const renderedNavbar = () => {
+    `
+    @@ -134,8 +144,100 @@ const renderedNavbar = () => {
+      <button class="navbar-brand" id="projectsButton">Projects</button>
+      <button class="navbar-brand" id="packagesButton">Packages</button>
+    </div>
+    </nav>
+    `;
+  
+  renderToDom("#navBar", navString);
+  };
 
 navDiv.addEventListener('click', taco => {
   if (taco.target.id === 'repoButton') {
     repoOnDom(repoArray);
   }
 });
-=======
 
 navDiv.innerHTML+=navString;
->>>>>>> main
 
 // Puts repo search on DOM
 const repoSearch = document.querySelector("#repoButton");
@@ -200,7 +195,6 @@ navDiv.addEventListener('click', (mypersonalhell) => {
     renderToDom("#formHolder", renderedAddRepo)}
 })
 
-<<<<<<< HEAD
 const formHolderDiv = document.querySelector("#formHolder");
 
 formHolderDiv.addEventListener('click', (pleaseholdmyhand) => {
@@ -219,15 +213,6 @@ formHolderDiv.addEventListener('click', (pleaseholdmyhand) => {
   const form = document.querySelector("#i-hate-this-form");
 
 // resets form this project is my greatest failure
-  form.reset();
-
-  repoOnDom(repoArray);
-  console.log(repoArray);
-}
-});
-=======
-renderToDom("#navBar", navString)
-};
 
 //Projects Button in Navbar
 const projectsOnDom = (array) => {
@@ -283,7 +268,6 @@ navDiv.addEventListener('click', event => {
 
 
 
->>>>>>> main
 
 
 
@@ -303,14 +287,11 @@ renderToDom("#footer", footString);
 
 const startApp = () => {
   renderedNavbar();
-<<<<<<< HEAD
   renderedFooter();
-=======
   repoSearch();
   addRepoForm();
   
   
->>>>>>> main
 };
 startApp(); 
 
@@ -386,4 +367,4 @@ startApp();
 // const typeArray = repoArray;
 // typeArray.forEach(taco => console.log(taco.description));
 
- 
+})
