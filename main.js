@@ -154,7 +154,6 @@ navDiv.addEventListener('click', taco => {
   }
 });
 
-
 // Puts repo search on DOM
 const repoSearch = document.querySelector("#repoButton");
 navDiv.addEventListener('click', (garbage) => {
@@ -205,7 +204,6 @@ navDiv.addEventListener('click', (mypersonalhell) => {
     `;
     renderToDom("#formHolder", renderedAddRepo)}
 })
-
 
 const formHolderDiv = document.querySelector("#formHolder");
 
