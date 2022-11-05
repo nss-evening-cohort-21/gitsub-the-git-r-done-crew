@@ -313,9 +313,6 @@ const startApp = () => {
   renderedNavbar();
 
   renderedFooter();
-
-  repoSearch();
-  addRepoForm();
   
   
 
