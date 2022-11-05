@@ -13,6 +13,8 @@ strong {
 
 em, .repo-description, .repo-name {
   color: darkslategray;
+  background-image: url('images/sunroof.png');
+  /* background: lavender;  */
 }
 
 a, em {
