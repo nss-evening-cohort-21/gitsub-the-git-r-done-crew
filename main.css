@@ -1,3 +1,5 @@
+
+
 body {
   background-color: darkslategray;
   color: azure;
@@ -11,6 +13,11 @@ strong {
   color: azure;
 }
 
-em {
+em, .repo-description, .repo-name {
   color: darkslategray;
 }
+
+a, em {
+  margin-left: 10px;
+  margin-right: 10px;
+};

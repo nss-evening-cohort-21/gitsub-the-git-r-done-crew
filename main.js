@@ -64,6 +64,14 @@ const repoArray = [
   }
 ];
 
+const randomAdj = [
+  'arrogant', 'blithering', 'constipated', 'frisky', 'maniacal', 'quixotic', 'sexy', 'territorial', 'vengeful', 'zippy', 'existential', 'universal', 'nervous', 'toxic', 'fleek', 'sarcastic', 'pliable', 'whimsical', 'loyal', 'youthful', 'trustworthy'
+]
+
+const randomNoun = [
+  'chariot', 'pleonasm', 'wizard', 'spigot', 'aglet', 'guitar', 'hermit', 'bicycle', 'internship', 'honeysuckle', 'cornucopia', 'loudspeaker', 'zebra', 'malaise', 'xylophone', 'limosuine', 'toothbrush', 'explosion', 'taco', 'grandmother', 'process'
+]
+
 const projArray = [
   {
     id: 1,
@@ -124,14 +132,6 @@ const projArray = [
     description: "a single place for your team",
   },
 ]; 
-
-const randomAdj = [
-  'arrogant', 'blithering', 'constipated', 'frisky', 'maniacal', 'quixotic', 'sexy', 'territorial', 'vengeful', 'zippy'
-];
-
-const randomNoun = [
-  'chariot', 'pleonasm', 'wizard', 'spigot', 'aglet', 'guitar', 'hermit', 'bicycle', 'internship', 'honeysuckle'
-];
   
 // Render to DOM
 const renderToDom = (divId, htmlToRender) => {
@@ -139,7 +139,7 @@ const renderToDom = (divId, htmlToRender) => {
   selectedDiv.innerHTML = htmlToRender;
 };
   
-// Dynamically render navbar
+// Dynamically rendered navbar
 const navDiv = document.querySelector("#navBar");
 const renderedNavbar = () => {
   const navString =
@@ -156,6 +156,7 @@ const renderedNavbar = () => {
   renderToDom("#navBar", navString)
 }; 
 
+
 const renderedSidebar = () => {
   const sideString = 
   `
@@ -170,40 +171,27 @@ const renderedSidebar = () => {
   renderToDom("#sideBar", sideString)
 }
 
+navDiv.addEventListener('click', taco => {
+  if (taco.target.id === 'repoButton') {
+    repoOnDom(repoArray);
+  }
+});
+
 // Puts repo search on DOM
 const repoSearch = document.querySelector("#repoButton");
-const searchFormDiv = document.querySelector("#searchForm"); 
-// Puts search bar on top of card
-// And displays Repos when you click on 'Repositories' in Navbar
-// And Dynamically renders form that lets you create a repo
-navDiv.addEventListener('click', (event) => {
-  if(event.target.id === "repoButton") {
+navDiv.addEventListener('click', (garbage) => {
+  if (garbage.target.id === "repoButton") {
+
   const renderedSearch = 
     `
-    <input class="form-control" type="text" placeholder="Find a repository" aria-label="default input example">
+    <input id="ihatethis" class="form-control" type="text" placeholder="Find a repository" aria-label="default input example">
     `;
   renderToDom("#searchForm", renderedSearch);
-  repoOnDom(repoArray);  
-  const adj = Math.floor(Math.random()*10);
-  const noun = Math.floor(Math.random()*10);
-  const renderedAddRepo =
-    `
-    <div>
-      <div>Create a Repository</div>
-      <label id = "new-repo-name" class="form-label">Repository Name</label>
-      <input class="form-control">
-      <div class="form-text">
-      Great repository names are short and memorable. Need inspiration? How about <strong>${randomAdj[adj]}-${randomNoun[noun]}</strong>?</div>
-      <div><label id = "new-repo-name" class="form-label">Description (optional)</label>
-      <input class="form-control"></div>
-    </div>
-    `;
-    renderToDom("#formHolder", renderedAddRepo)
-}})
-// repo button clicked, function called w/in another function
+  })
+  
 const repoOnDom = (array) => {
   let domString = "";  // Starts function with empty string
-  // Turns each first year object into an HTML card after you click 'repo' button
+  // Takes material from object and puts it into an HTML card after you click 'repo' button
   for (const repo of array) {
     domString += `
     <div class="card" style="width: 18rem;">
@@ -225,6 +213,60 @@ const projectsTopSection = () => {
     <input class="form-control" type="text" placeholder="Search all projects" aria-label="default input example">
     `;
   let navString = `<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+}
+
+// Dynamically renders form that lets you create a repo
+navDiv.addEventListener('click', (mypersonalhell) => {
+  if (mypersonalhell.target.id === "repoButton") {
+  const adj = Math.floor(Math.random()*randomAdj.length);
+  const noun = Math.floor(Math.random()*randomNoun.length);
+  const renderedAddRepo = 
+    `
+    <form id="i-hate-this-form">
+      <div>Create a Repository</div>
+        <label class="form-label">Repository Name</label>
+        <input class="form-control" id="new-repo-name">
+      <div class="form-text">
+        Great repository names are short and memorable. Need inspiration? How about <strong>${randomAdj[adj]}-${randomNoun[noun]}</strong>?
+      </div>
+      <div><label class="form-label">Description (optional)</label>
+        <input id="new-repo-descrip" class="form-control">
+      </div>
+    <button id="make-repo" type="submit" class="btn btn-success">Create a Repository</button>
+    </form>
+    `;
+    renderToDom("#formHolder", renderedAddRepo)}
+})
+
+const formHolderDiv = document.querySelector("#formHolder");
+
+formHolderDiv.addEventListener('click', (pleaseholdmyhand) => {
+
+  pleaseholdmyhand.preventDefault();
+
+  if (pleaseholdmyhand.target.id === "make-repo") {
+  const object = {
+    id: repoArray.length+1,
+    name: document.querySelector("#new-repo-name").value,
+    description: document.querySelector("#new-repo-descrip").value
+  }
+  repoArray.push(object);
+
+  // defines form as an HTML element so it can be reset
+  const form = document.querySelector("#i-hate-this-form");
+
+// resets form this project is my greatest failure
+  form.reset();
+
+  repoOnDom(repoArray);
+  console.log(repoArray);
+}
+});
+
+//Projects Button in Navbar
+const projectsOnDom = (array) => {
+  let domString = "";
+  let topString = `<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
   <div class="container-fluid">
     <a class="navbar-brand" href="#">Open Closed</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDarkDropdown" aria-controls="navbarNavDarkDropdown" aria-expanded="false" aria-label="Toggle navigation">
@@ -302,6 +344,64 @@ navDiv.addEventListener('click', event => {
   }
 });
 
+//adds pkgs on Dom
+const packagesOnDom = (array) => {
+  let domString = ""; 
+  for (const packages of array) {
+    domString += `<div class="card flex-wrap" style="width: 18rem;">
+    <div class="card-body">
+      <h5 class="card-title">${packages.name}</h5>
+      <p class="card-text">${packages.description}</p>
+      <button class="btn btn-primary" >Learn More</button>
+    </div>
+  </div>`;
+  }
+  renderToDom("#newDataDiv", domString);
+};
+const pkgsForm = 
+`
+<form id="pkgsform">
+  <div class="mb-3">
+    <label class="form-label">Create new package</label>
+    <input type="text" class="form-control" aria-describedby="Package Name" placeholder="package name" required>
+  </div>
+  <div class="mb-3">
+    <label for="exampleFormControlTextarea1" class="form-label">Description</label>
+    <div class="form-text">(optional)</div>
+    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+  </div>
+  
+  <button type="submit" class="btn btn-success" id="createPackagesBtn">Create packages</button>
+</form>
+`;
+renderToDom("#formHolder", pkgsForm);
+
+
+
+
+
+
+
+
+//deletes pkg
+
+//if (e.target.id.includes("delete")) {
+  //const [, id] = e.target.id.split("--");
+  //const index = packages.findIndex(e => e.id === Number(id));
+  //const removed = packages.splice(index, 1); 
+  //packages.push(removed[0]);
+  //packagesOnDom(packages);
+  
+
+
+navDiv.addEventListener('click', event => {
+  if (event.target.id === 'packagesButton') {
+    packagesOnDom(packages);
+  }
+});
+//Creates package
+
+
 
 // ****** CREATE NEW PROJECT BUTTON FUNCTION ****** //
 // to create unique ID. ticket explained: https://github.com/orgs/nss-evening-web-development/discussions/126 
@@ -344,7 +444,7 @@ document.addEventListener('submit', createProject);
 // Dynamically render footer
 const footDiv = document.querySelector("#footer");
 const renderedFooter = () => {
-  const footString = 
+  const footString =
   `
   <nav class="navbar navbar-expand-lg bg-light">
   <div id="copyright">
