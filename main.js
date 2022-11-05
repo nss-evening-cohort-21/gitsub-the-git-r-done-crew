@@ -146,7 +146,7 @@ const renderedNavbar = () => {
   </div>
   </nav>
   `;
-<<<<<<< HEAD
+
 renderToDom("#navBar", navString);
 };
 
@@ -155,10 +155,10 @@ navDiv.addEventListener('click', taco => {
     repoOnDom(repoArray);
   }
 });
-=======
+
 
 navDiv.innerHTML+=navString;
->>>>>>> main
+
 
 // Puts repo search on DOM
 const repoSearch = document.querySelector("#repoButton");
@@ -213,7 +213,6 @@ navDiv.addEventListener('click', (mypersonalhell) => {
     renderToDom("#formHolder", renderedAddRepo)}
 })
 
-<<<<<<< HEAD
 const formHolderDiv = document.querySelector("#formHolder");
 
 formHolderDiv.addEventListener('click', (pleaseholdmyhand) => {
@@ -238,7 +237,7 @@ formHolderDiv.addEventListener('click', (pleaseholdmyhand) => {
   console.log(repoArray);
 }
 });
-=======
+
 renderToDom("#navBar", navString)
 };
 
@@ -296,7 +295,6 @@ navDiv.addEventListener('click', event => {
 
 
 
->>>>>>> main
 
 
 
@@ -332,14 +330,13 @@ renderToDom("#footer", footString);
 
 const startApp = () => {
   renderedNavbar();
-<<<<<<< HEAD
   renderedFooter();
-=======
+
   repoSearch();
   addRepoForm();
   
   
->>>>>>> main
+
 };
 startApp(); 
 
