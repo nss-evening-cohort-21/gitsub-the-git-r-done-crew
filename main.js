@@ -238,9 +238,6 @@ navDiv.addEventListener('click', (mypersonalhell) => {
     renderToDom("#formHolder", renderedAddRepo)}
 })
 
-
-const formHolderDiv = document.querySelector("#formHolder");
-
 formHolderDiv.addEventListener('click', (pleaseholdmyhand) => {
 
   pleaseholdmyhand.preventDefault();
@@ -389,7 +386,6 @@ const createId = (array) => {
     return 0;
   }
 };
-
 const formHolderDiv = document.querySelector("#projForm");
 const createProject = (event) => {
   event.preventDefault(); // EVERY TIME YOU CREATE A FORM, so it doesn't reset entirely
@@ -407,7 +403,7 @@ projectsOnDom("#newDataDiv", projArray);
 };
 // you can't add an event listener, to something that hasn't been rendered
 //Add an event listener for the form submit and pass it the function (callback)
-document.addEventListener('submit', createProject);
+	document.addEventListener('submit', createProject);
 
 
 
@@ -416,7 +412,8 @@ document.addEventListener('submit', createProject);
 
 // Dynamically render footer
 const footDiv = document.querySelector("#footer");
-const renderedFooter = 
+const renderedFooter = () => {
+  const footString =
   `
   this be tha footer!
   `;
@@ -431,4 +428,4 @@ const startApp = () => {
   renderedFooter();
   
 };
-startApp(); 
+startApp();
