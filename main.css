@@ -1,6 +1,5 @@
 body {
   background-color: darkslategray;
-  color: azure;
   display: flex;
   flex-direction: column;
   min-height: 100vh;
@@ -54,4 +53,8 @@ a, em {
 .side-button {
   color: azure;
   border-color: azure;
+}
+
+.card-body {
+  color: black;
 }

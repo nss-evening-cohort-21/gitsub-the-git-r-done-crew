@@ -124,5 +124,3 @@ const usersExample = [
 
 * **Dynamic Buttons** - somewhere in your project there should be some dynamically created buttons (NOT IN THE HTML...RENDERED USING JAVASCRIPT) - clicking each button should perform some sort of action
 * **Form** - Each page in your project should have at least 1 form.  Submitting that form via a button click should do something.
-
-
