@@ -54,3 +54,7 @@ a, em {
   color: azure;
   border-color: azure;
 }
+
+.card-body {
+  color: black;
+}
