@@ -164,6 +164,31 @@ navDiv.addEventListener('click', taco => {
   }
 });
 
+const renderedSidebar = () => {
+  const sideString =
+  `
+  <div id="side-pic">
+    <img src="images/DavidSPumpkins.jpeg" class="profile" alt="David S. Pumpkins">
+  </div>
+  <div id="side-name">
+    David S. Pumpkins
+  </div>
+  <div id="side-bio">
+    Scaring people stupid by being his own thing.
+    Owner of multiple haunted house franchises.
+    The skeletons are part of it.
+  </div>
+  <div id="side-buttons">
+    <button type="button" class="btn btn-outline-info side-button">Follow</button>
+    <button type="button" class="btn btn-outline-info side-button">&hearts; Sponsor</button>
+    <button type="button" class="btn btn-outline-info side-button">...</button>
+  </div>
+  <div>
+  </div>
+  `;
+  renderToDom("#sideBar", sideString)
+}
+
 // Puts repo search on DOM
 const repoSearch = document.querySelector("#repoButton");
 navDiv.addEventListener('click', (garbage) => { // Reads repoButton click
@@ -307,7 +332,7 @@ navDiv.addEventListener('click', event => {
 const packagesOnDom = (array) => {
   let domString = ""; 
   for (const packages of array) {
-    domString += `<div class="card flex-wrap" style="width: 18rem;">
+    domString += `<div id="pack-card" class="card flex-wrap" style="width: 18rem;">
     <div class="card-body">
       <h5 class="card-title">${packages.name}</h5>
       <p class="card-text">${packages.description}</p>
@@ -390,6 +415,7 @@ renderToDom("#footer", footString)
 
 const startApp = () => {
   renderedNavbar();
+  renderedSidebar();
   renderedFooter();
 };
 startApp(); 

@@ -26,7 +26,7 @@ strong {
   color: azure;
 }
 
-em, .repo-description, .repo-name {
+em, .repo-description, .repo-name, #pack-card {
   color: darkslategray;
 }
 
@@ -56,4 +56,20 @@ a, em {
 .side-button {
   color: azure;
   border-color: azure;
+}
+
+#side-pic {
+  margin: 20px;
+}
+
+#side-name {
+  margin: 20px;
+}
+
+#side-bio {
+  margin: 20px;
+}
+
+#side-buttons {
+  margin: 20px;
 }
