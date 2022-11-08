@@ -164,7 +164,7 @@ const renderedSidebar = () => {
   <div class="card-body">
     <h5 class="card-title">Side Bar City</h5>
     <p class="card-text">Text some text. Text.</p>
-    <a href="#" class="btn btn-primary">Go somewhere</a>
+    <a href="#" class="btn btn-primary">Placeholder</a>
   </div>
 </div>
   `;
@@ -181,12 +181,11 @@ navDiv.addEventListener('click', taco => {
 const repoSearch = document.querySelector("#repoButton");
 navDiv.addEventListener('click', (garbage) => {
   if (garbage.target.id === "repoButton") {
-
   const renderedSearch = 
     `
     <input id="ihatethis" class="form-control" type="text" placeholder="Find a repository" aria-label="default input example">
     `;
-  renderToDom("#searchForm", renderedSearch);
+  renderToDom("#searchForm", renderedSearch);}
   })
   
 const repoOnDom = (array) => {
@@ -206,14 +205,6 @@ const repoOnDom = (array) => {
     renderToDom("#newDataDiv", domString);
   }
 
-//Projects Button in Navbar
-const projectsTopSection = () => {
-  const searchProjects = 
-    `
-    <input class="form-control" type="text" placeholder="Search all projects" aria-label="default input example">
-    `;
-  let navString = `<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-}
 
 // Dynamically renders form that lets you create a repo
 navDiv.addEventListener('click', (mypersonalhell) => {
@@ -225,20 +216,40 @@ navDiv.addEventListener('click', (mypersonalhell) => {
     <form id="i-hate-this-form">
       <div>Create a Repository</div>
         <label class="form-label">Repository Name</label>
-        <input class="form-control" id="new-repo-name">
+        <input class="form-control" id="new-repo-name" required>
       <div class="form-text">
         Great repository names are short and memorable. Need inspiration? How about <strong>${randomAdj[adj]}-${randomNoun[noun]}</strong>?
       </div>
       <div><label class="form-label">Description (optional)</label>
-        <input id="new-repo-descrip" class="form-control">
+        <input id="new-repo-descrip" class="form-control" required>
       </div>
     <button id="make-repo" type="submit" class="btn btn-success">Create a Repository</button>
     </form>
     `;
     renderToDom("#formHolder", renderedAddRepo)}
+    
 })
 
 const formHolderDiv = document.querySelector("#formHolder");
+
+// ****** CREATE NEW PROJECT BUTTON FUNCTION ****** //
+// to create unique ID. ticket explained: https://github.com/orgs/nss-evening-web-development/discussions/126 
+const createId = (array) => {
+  if (array.length) {
+    const idArray = [];
+    for (const el of array) {
+      idArray.push(el.id);
+    }
+    return Math.max(...idArray) + 1;
+  } else {
+    return 0;
+  }
+};
+
+
+// ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** //
+// ****** ****** CLICK EVENT FOR FORM DIV aka #formHolder below our "cardsOnDom"  ****** ****** //
+// ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** //
 
 formHolderDiv.addEventListener('click', (pleaseholdmyhand) => {
 
@@ -257,16 +268,38 @@ formHolderDiv.addEventListener('click', (pleaseholdmyhand) => {
 
 // resets form this project is my greatest failure
   form.reset();
-
   repoOnDom(repoArray);
-  console.log(repoArray);
-}
-});
+
+  } else if (pleaseholdmyhand.target.id === "projectsubmit") {    
+      const newProjObj = { 
+        id: createId(projArray), //students.length + 1, 
+        name: document.querySelector("#projname").value,
+        description: document.querySelector("#projectdescription").value, 
+      }; 
+        
+        projArray.push(newProjObj);
+        // const form = document.querySelector("#projform");
+        // form.reset(); 
+        projectsOnDom("#newDataDiv", projArray);
+    
+    // you can't add an event listener, to something that hasn't been rendered
+    //Add an event listener for the form submit and pass it the function (callback)
+    }
+  }
+);
+
+// ****** ****** ****** ****** ****** ****** ****** ****** //
+// ****** ****** projectsButton IN navBar ****** ****** //
+// ****** ****** ****** ****** ****** ****** ****** ****** //
+
 
 //Projects Button in Navbar
-const projectsOnDom = (array) => {
-  let domString = "";
-  let topString = `<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+const projectsTopSection = () => {
+  const searchProjects = 
+    `
+    <input class="form-control" type="text" placeholder="Search all projects" aria-label="default input example">
+    `;
+  let navString = `<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
   <div class="container-fluid">
     <a class="navbar-brand" href="#">Open Closed</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDarkDropdown" aria-controls="navbarNavDarkDropdown" aria-expanded="false" aria-label="Toggle navigation">
@@ -292,7 +325,7 @@ const projectsOnDom = (array) => {
   renderToDom("#searchForm", upperString);
 };
 
-  const projectsOnDom = (aDiv, array) => {
+const projectsOnDom = (aDiv, array) => {
     let projString = ""; 
     for (const proj of array) {
     projString += `
@@ -311,8 +344,6 @@ const projectsOnDom = (array) => {
     renderToDom(aDiv, projString);  
   };
   
-  
-
   const projectsBottomSection = () => {
     const projForm =
     `
@@ -320,6 +351,7 @@ const projectsOnDom = (array) => {
       <div class="mb-3">
         <label class="form-label">Create a new project</label>
         <input type="text" class="form-control" id="projname" aria-describedby="Project Name" placeholder="Example 2" required>
+        </input>
       </div>
       <div class="mb-3">
         <label for="exampleFormControlTextarea1" class="form-label">Description</label>
@@ -330,11 +362,11 @@ const projectsOnDom = (array) => {
       <button type="submit" class="btn btn-success" id="projectsubmit">Create project</button>
     </form>
     `;
-    renderToDom("#formHolder", projForm);
+     
+    renderToDom("#formHolder", projForm); 
   }; 
- 
 
-//click event to show Projects
+//click event to show Projects 
 navDiv.addEventListener('click', event => {
   if (event.target.id === 'projectsButton') {
     projectsTopSection();
@@ -343,6 +375,9 @@ navDiv.addEventListener('click', event => {
 
   }
 });
+
+
+
 
 //adds pkgs on Dom
 const packagesOnDom = (array) => {
@@ -358,23 +393,23 @@ const packagesOnDom = (array) => {
   }
   renderToDom("#newDataDiv", domString);
 };
-const pkgsForm = 
-`
-<form id="pkgsform">
-  <div class="mb-3">
-    <label class="form-label">Create new package</label>
-    <input type="text" class="form-control" aria-describedby="Package Name" placeholder="package name" required>
-  </div>
-  <div class="mb-3">
-    <label for="exampleFormControlTextarea1" class="form-label">Description</label>
-    <div class="form-text">(optional)</div>
-    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
-  </div>
+// const pkgsForm = 
+// `
+// <form id="pkgsform">
+//   <div class="mb-3">
+//     <label class="form-label">Create new package</label>
+//     <input type="text" class="form-control" aria-describedby="Package Name" placeholder="package name" required>
+//   </div>
+//   <div class="mb-3">
+//     <label for="exampleFormControlTextarea1" class="form-label">Description</label>
+//     <div class="form-text">(optional)</div>
+//     <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+//   </div>
   
-  <button type="submit" class="btn btn-success" id="createPackagesBtn">Create packages</button>
-</form>
-`;
-renderToDom("#formHolder", pkgsForm);
+//   <button type="submit" class="btn btn-success" id="createPackagesBtn">Create packages</button>
+// </form>
+// `;
+// renderToDom("#formHolder", pkgsForm);
 
 
 
@@ -401,40 +436,6 @@ navDiv.addEventListener('click', event => {
 });
 //Creates package
 
-
-
-// ****** CREATE NEW PROJECT BUTTON FUNCTION ****** //
-// to create unique ID. ticket explained: https://github.com/orgs/nss-evening-web-development/discussions/126 
-const createId = (array) => {
-  if (array.length) {
-    const idArray = [];
-    for (const el of array) {
-      idArray.push(el.id);
-    }
-    return Math.max(...idArray) + 1;
-  } else {
-    return 0;
-  }
-};
-
-const formHolderDiv = document.querySelector("#projForm");
-const createProject = (event) => {
-  event.preventDefault(); // EVERY TIME YOU CREATE A FORM, so it doesn't reset entirely
-  const newProjObj = { 
-    id: createId(projArray), //students.length + 1, 
-    name: document.querySelector("#projname").value,
-    description: document.querySelector("#projectdescription").value, 
-}; 
-//to test 
-//console.log(newProjObj); 
-projArray.push(newProjObj);
-const form = document.querySelector("#projform");
-form.reset(); 
-projectsOnDom("#newDataDiv", projArray);
-};
-// you can't add an event listener, to something that hasn't been rendered
-//Add an event listener for the form submit and pass it the function (callback)
-document.addEventListener('submit', createProject);
 
 
 
