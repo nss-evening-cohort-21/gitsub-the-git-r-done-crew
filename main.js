@@ -1,31 +1,38 @@
+//repos
 const pinnedRepos = [
   {
      id: 1,
+     type: 'Overview',
      name: "gatsby-workshop",
      description: "This workshop covers the fundamentals of developing fast, accesible sites with Gatsby, a React framework, and dive deep into the building blocks you'll need to build your own custom Gatsby sites."
   },
   {
     id: 2,
+    type: 'Overview',
     name: "gatsby-workshop",
     description: "This workshop covers the fundamentals of developing fast, accesible sites with Gatsby, a React framework, and dive deep into the building blocks you'll need to build your own custom Gatsby sites."
   },
   {
     id: 3,
+    type: 'Overview',
     name: "gatsby-workshop",
     description: "This workshop covers the fundamentals of developing fast, accesible sites with Gatsby, a React framework, and dive deep into the building blocks you'll need to build your own custom Gatsby sites."
   },
   {
     id: 4,
+    type: 'Overview',
     name: "gatsby-workshop",
     description: "This workshop covers the fundamentals of developing fast, accesible sites with Gatsby, a React framework, and dive deep into the building blocks you'll need to build your own custom Gatsby sites."
   },
   {
     id: 5,
+    type: 'Overview',
     name: "gatsby-workshop",
     description: "This workshop covers the fundamentals of developing fast, accesible sites with Gatsby, a React framework, and dive deep into the building blocks you'll need to build your own custom Gatsby sites."
   },
   {
     id: 6,
+    type: 'Overview',
     name: "gatsby-workshop",
     description: "This workshop covers the fundamentals of developing fast, accesible sites with Gatsby, a React framework, and dive deep into the building blocks you'll need to build your own custom Gatsby sites."
   }
@@ -100,6 +107,7 @@ const projArray = [
   }
 ];
 
+
   const packages = [
   {
     id: 1,
@@ -133,14 +141,33 @@ const projArray = [
   },
 ]; 
   
-// Render to DOM
+// Main Render to DOM Function called by other functions
 const renderToDom = (divId, htmlToRender) => {
   const selectedDiv = document.querySelector(divId);
   selectedDiv.innerHTML = htmlToRender;
 };
-  
-// Dynamically rendered navbar
-const navDiv = document.querySelector("#navBar");
+
+//cardsOnDom Function
+const cardsOnDom = (array) => {
+  let domString = "";
+  for (const card of array) {
+  domString += `<div class="card" style="width: 18rem;">
+  <div class="card-body">
+    <h5 class="card-title">${card.name}</h5>
+    <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
+    <p class="card-text">${card.description}</p>
+    <a href="#" class="card-link">Card link</a>
+    <a href="#" class="card-link">Another link</a>
+  </div>
+</div>`;
+  }
+  renderToDom("#newDataDiv", domString);
+  }
+
+
+const navDiv = document.querySelector("#navBar"); // Creates nav variable for event listeners
+
+// Renders navbar dynamically
 const renderedNavbar = () => {
   const navString =
   `
@@ -155,21 +182,6 @@ const renderedNavbar = () => {
   `;
   renderToDom("#navBar", navString)
 }; 
-
-
-const renderedSidebar = () => {
-  const sideString = 
-  `
-  <div class="card" style="width: 18rem;">
-  <div class="card-body">
-    <h5 class="card-title">Side Bar City</h5>
-    <p class="card-text">Text some text. Text.</p>
-    <a href="#" class="btn btn-primary">Placeholder</a>
-  </div>
-</div>
-  `;
-  renderToDom("#sideBar", sideString)
-}
 
 navDiv.addEventListener('click', taco => {
   if (taco.target.id === 'repoButton') {
@@ -187,22 +199,17 @@ navDiv.addEventListener('click', (garbage) => {
     `;
   renderToDom("#searchForm", renderedSearch);}
   })
+// filter for navbar
+const filter = (array, overViewCardsString) => {
+  const overViewArray = [];
   
-const repoOnDom = (array) => {
-  let domString = "";  // Starts function with empty string
-  // Takes material from object and puts it into an HTML card after you click 'repo' button
-  for (const repo of array) {
-    domString += `
-    <div class="card" style="width: 18rem;">
-      <div class="card-body">
-      <h5 class="card-title repo-name">${repo.name}</h5>
-      <p class="card-text repo-description">${repo.description}</p>
-      </div> 
-    </div>
-    `; 
-    }
-  // Renders HTML cards onto the DOM
-    renderToDom("#newDataDiv", domString);
+  for (const card of array) {
+  if (card.type === overViewCardsString) {
+  overViewArray.push(card);
+  }
+  }
+  
+  return overViewArray;
   }
 
 
@@ -232,6 +239,7 @@ navDiv.addEventListener('click', (mypersonalhell) => {
 
 const formHolderDiv = document.querySelector("#formHolder");
 
+
 // ****** CREATE NEW PROJECT BUTTON FUNCTION ****** //
 // to create unique ID. ticket explained: https://github.com/orgs/nss-evening-web-development/discussions/126 
 const createId = (array) => {
@@ -255,11 +263,11 @@ formHolderDiv.addEventListener('click', (pleaseholdmyhand) => {
 
   pleaseholdmyhand.preventDefault();
 
-  if (pleaseholdmyhand.target.id === "make-repo") {
-  const object = {
-    id: repoArray.length+1,
-    name: document.querySelector("#new-repo-name").value,
-    description: document.querySelector("#new-repo-descrip").value
+
+ //event for clicking and displaying pinnedRepos
+ navDiv.addEventListener('click', taco => {
+  if (taco.target.id === 'overviewButton') {
+    cardsOnDom(pinnedRepos);
   }
   repoArray.push(object);
 
@@ -393,53 +401,61 @@ const packagesOnDom = (array) => {
   }
   renderToDom("#newDataDiv", domString);
 };
-// const pkgsForm = 
-// `
-// <form id="pkgsform">
-//   <div class="mb-3">
-//     <label class="form-label">Create new package</label>
-//     <input type="text" class="form-control" aria-describedby="Package Name" placeholder="package name" required>
-//   </div>
-//   <div class="mb-3">
-//     <label for="exampleFormControlTextarea1" class="form-label">Description</label>
-//     <div class="form-text">(optional)</div>
-//     <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
-//   </div>
+ const pkgsForm = 
+ `
+ <form id="pkgsform">
+   <div class="mb-3">
+     <label class="form-label">Create new package</label>
+     <input type="text" class="form-control" aria-describedby="Package Name" placeholder="package name" required>
+   </div>
+   <div class="mb-3">
+     <label for="exampleFormControlTextarea1" class="form-label">Description</label>
+     <div class="form-text">(optional)</div>
+     <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+   </div>
   
-//   <button type="submit" class="btn btn-success" id="createPackagesBtn">Create packages</button>
-// </form>
-// `;
-// renderToDom("#formHolder", pkgsForm);
-
-
-
-
-
-
-
-
-//deletes pkg
-
-//if (e.target.id.includes("delete")) {
-  //const [, id] = e.target.id.split("--");
-  //const index = packages.findIndex(e => e.id === Number(id));
-  //const removed = packages.splice(index, 1); 
-  //packages.push(removed[0]);
-  //packagesOnDom(packages);
-  
-
-
-navDiv.addEventListener('click', event => {
-  if (event.target.id === 'packagesButton') {
-    packagesOnDom(packages);
-  }
+   <button type="submit" class="btn btn-success" id="createPackagesBtn">Create packages</button>
+ </form>
+ `;
+renderToDom("#formHolder", pkgsForm);
 });
-//Creates package
 
+const pinnedRepoForm = 
+`
+<form id="form">
+  <div class="mb-3">
+    <label class="form-label">Create a pinned repository</label>
+    <input type="text" class="form-control" id="name" aria-describedby="Repository Name" placeholder="Pinned repository name" required>
+  </div>
+  <div class="mb-3">
+    <label for="exampleFormControlTextarea1" class="form-label">Description</label>
+    <div class="form-text">(optional)</div>
+    <textarea class="form-control" id="description" rows="3"></textarea>
+  </div>
+  
+  <button type="submit" class="btn btn-success" id="createPackagesBtn">Create Repository</button>
+</form>
+`;
+renderToDom("#formHolder", pinnedRepoForm);
 
+const overviewForm = document.querySelector('#form');
 
+const createPinnedRepo = (e) => {
+  e.preventDefault(); // EVERY TIME YOU CREATE A FORM
 
+  const newPinnedObj = {
+    id: pinnedRepos.length + 1,
+    type: 'Overview',
+    name: document.querySelector("#name").value,
+    description: document.querySelector("#description").value
+  }
 
+  pinnedRepos.push(newPinnedObj);
+  cardsOnDom(pinnedRepos);
+  form.reset();
+}
+
+form.addEventListener('submit', createPinnedRepo);
 
 
 // Dynamically render footer
@@ -473,6 +489,5 @@ const startApp = () => {
   renderedNavbar();
   renderedSidebar();
   renderedFooter();
-  
 };
-startApp(); 
+startApp();
