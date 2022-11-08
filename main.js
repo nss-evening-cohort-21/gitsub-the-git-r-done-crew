@@ -107,6 +107,7 @@ const projArray = [
   }
 ];
 
+
   const packages = [
   {
     id: 1,
@@ -135,12 +136,12 @@ const projArray = [
   },
   { 
     id: 6,
-    name: "angelfire-filter",
-    description: "This app makes your website look like an angelfire website from circa 2003.."
-  }
-]
-
-// Render to DOM
+    name: "npm",
+    description: "a single place for your team",
+  },
+]; 
+  
+// Main Render to DOM Function called by other functions
 const renderToDom = (divId, htmlToRender) => {
   const selectedDiv = document.querySelector(divId);
   selectedDiv.innerHTML = htmlToRender;
@@ -163,9 +164,10 @@ const cardsOnDom = (array) => {
   renderToDom("#newDataDiv", domString);
   }
 
-// Dynamically rendered navbar
 
-const navDiv = document.querySelector("#navBar");
+const navDiv = document.querySelector("#navBar"); // Creates nav variable for event listeners
+
+// Renders navbar dynamically
 const renderedNavbar = () => {
   const navString =
   `
@@ -194,14 +196,39 @@ const filter = (array, overViewCardsString) => {
   return overViewArray;
   }
 
- // const overViewTicker = document.querySelector("#overviewButton");
+//Projects Button in Navbar
+const projectsTopSection = () => {
+  const searchProjects = 
+    `
+    <input class="form-control" type="text" placeholder="Search all projects" aria-label="default input example">
+    `;
+  let navString = `<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+}
 
-  //overViewTicker.addEventListener('click', myFunction)
+// Dynamically renders form that lets you create a repo
+navDiv.addEventListener('click', (mypersonalhell) => {
+  if (mypersonalhell.target.id === "repoButton") {
+  const adj = Math.floor(Math.random()*randomAdj.length);
+  const noun = Math.floor(Math.random()*randomNoun.length);
+  const renderedAddRepo = 
+    `
+    <form id="i-hate-this-form">
+      <div>Create a Repository</div>
+        <label class="form-label">Repository Name</label>
+        <input class="form-control" id="new-repo-name">
+      <div class="form-text">
+        Great repository names are short and memorable. Need inspiration? How about <strong>${randomAdj[adj]}-${randomNoun[noun]}</strong>?
+      </div>
+      <div><label class="form-label">Description (optional)</label>
+        <input id="new-repo-descrip" class="form-control">
+      </div>
+    <button id="make-repo" type="submit" class="btn btn-success">Create a Repository</button>
+    </form>
+    `;
+    renderToDom("#formHolder", renderedAddRepo)}
+})
 
-  //function myFunction () {
-   // const cardsAreOverView = filter(pinnedRepos, 'Overview');
-   // cardsOnDom(cardsAreOverView);
- // }
+const formHolderDiv = document.querySelector("#formHolder");
 
  //overViewTicker.addEventListener('click', () => {
   //const cardsAreOverView = filter(pinnedRepos, 'Overview');
