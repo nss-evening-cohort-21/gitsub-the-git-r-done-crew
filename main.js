@@ -90,8 +90,7 @@ const projArray = [
   }
 ];
 
-
-  const packages = [
+const packages = [
   {
     id: 1,
     name: "docker",
@@ -124,14 +123,15 @@ const projArray = [
   },
 ]; 
   
-// Render to DOM
+// Main Render to DOM Function called by other functions
 const renderToDom = (divId, htmlToRender) => {
   const selectedDiv = document.querySelector(divId);
   selectedDiv.innerHTML = htmlToRender;
 };
   
-// Dynamically rendered navbar
-const navDiv = document.querySelector("#navBar");
+const navDiv = document.querySelector("#navBar"); // Creates nav variable for event listeners
+
+// Renders navbar dynamically
 const renderedNavbar = () => {
   const navString =
   `
@@ -148,30 +148,56 @@ const renderedNavbar = () => {
 renderToDom("#navBar", navString);
 };
 
-navDiv.addEventListener('click', taco => {
+const renderedSidebar = () => {
+  const sideString =
+  `
+  <div id="side-pic">
+    <img src="images/DavidSPumpkins.jpeg" class="profile" alt="David S. Pumpkins">
+  </div>
+  <div id="side-name">
+    David S. Pumpkins
+  </div>
+  <div>
+    Scaring people stupid by being his own thing.
+    Owner of multiple haunted house franchises.
+    The skeletons are part of it.
+  </div>
+  <div>
+    <button type="button" class="btn btn-outline-info side-button">Follow</button>
+    <button type="button" class="btn btn-outline-info side-button">&hearts; Sponsor</button>
+    <button type="button" class="btn btn-outline-info side-button">...</button>
+  </div>
+  <div>
+
+  </div>
+  `;
+  renderToDom("#sideBar", sideString)
+}
+
+// Puts repo search on DOM
+const repoSearch = document.querySelector("#repoButton");
+navDiv.addEventListener('click', (garbage) => { // Reads repoButton click
+  if (garbage.target.id === "repoButton") {
+  const renderedSearch = 
+    `
+    <input id="ihatethis" class="form-control" type="text" placeholder="Find a repository" aria-label="default input example">  
+    `; // I don't really hate this, I just get into moods
+  renderToDom("#searchForm", renderedSearch);}
+})
+
+// Renders repoArray on DOM after repoButton click
+navDiv.addEventListener('click', taco => { // Reads repoButton click
   if (taco.target.id === 'repoButton') {
     repoOnDom(repoArray);
   }
 });
 
-
-// Puts repo search on DOM
-const repoSearch = document.querySelector("#repoButton");
-navDiv.addEventListener('click', (garbage) => {
-  if (garbage.target.id === "repoButton") {
-  const renderedSearch = 
-    `
-    <input id="ihatethis" class="form-control" type="text" placeholder="Find a repository" aria-label="default input example">
-    `;
-  renderToDom("#searchForm", renderedSearch);}
-})
-
 const repoOnDom = (array) => {
   let domString = "";  // Starts function with empty string
   // Takes material from object and puts it into an HTML card after you click 'repo' button
-  for (const repo of array) {
+  for (const repo of array) { // goes through each object to get all the repos
     domString += `
-    <div class="card" style="width: 18rem;">
+    <div class="card column" style="width: 18rem;">
       <div class="card-body">
       <h5 class="card-title repo-name">${repo.name}</h5>
       <p class="card-text repo-description">${repo.description}</p>
@@ -186,8 +212,8 @@ const repoOnDom = (array) => {
 // Dynamically renders form that lets you create a repo
 navDiv.addEventListener('click', (mypersonalhell) => {
   if (mypersonalhell.target.id === "repoButton") {
-  const adj = Math.floor(Math.random()*randomAdj.length);
-  const noun = Math.floor(Math.random()*randomNoun.length);
+  const adj = Math.floor(Math.random()*randomAdj.length);  // randomly generated
+  const noun = Math.floor(Math.random()*randomNoun.length); // repo names
   const renderedAddRepo = 
     `
     <form id="i-hate-this-form">
@@ -202,7 +228,7 @@ navDiv.addEventListener('click', (mypersonalhell) => {
       </div>
     <button id="make-repo" type="submit" class="btn btn-success">Create a Repository</button>
     </form>
-    `;
+    `; // Again, no real hate, more moods
     renderToDom("#formHolder", renderedAddRepo)}
 })
 
@@ -309,6 +335,7 @@ renderToDom("#footer", footString);
 
 const startApp = () => {
   renderedNavbar();
+  renderedSidebar();
   renderedFooter();
 };
 startApp(); 
