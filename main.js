@@ -288,13 +288,7 @@ const filter = (array, overViewCardsString) => {
   }
   
   
- //event for clicking and displaying pinnedRepos
- navDiv.addEventListener('click', taco => {
-  if (taco.target.id === 'overviewButton') {
-    cardsOnDom(pinnedRepos);
-  }
-  
-  
+
 const pinnedRepoForm = 
 `
 <form id="form">
@@ -312,6 +306,13 @@ const pinnedRepoForm =
 </form>
 `;
 renderToDom("#formHolder", pinnedRepoForm);
+
+ //event for clicking and displaying pinnedRepos
+ navDiv.addEventListener('click', taco => {
+  if (taco.target.id === 'overviewButton') {
+    cardsOnDom(pinnedRepos);
+  }
+});
 
 const overviewForm = document.querySelector('#form');
 
@@ -373,20 +374,22 @@ formHolderDiv.addEventListener('click', (pleaseholdmyhand) => {
   form.reset();
   repoOnDom(repoArray);
 
-  } else if (pleaseholdmyhand.target.id === "projectsubmit") {    
-      const newProjObj = { 
-        id: createId(projArray), //students.length + 1, 
-        name: document.querySelector("#projname").value,
-        description: document.querySelector("#projectdescription").value, 
-      }; 
-        
-        projArray.push(newProjObj);
-        // const form = document.querySelector("#projform");
-        // form.reset(); 
-        projectsOnDom("#newDataDiv", projArray);
+  // ********** A PART OF PROJECTS BUTTON ************* //
+  // ****** CREATES NEW PROJECT BUTTON ****** //
+} else if (pleaseholdmyhand.target.id === "projectsubmit") {    
+  const newProjObj = { 
+    id: createId(projArray), //students.length + 1, 
+    name: document.querySelector("#projname").value,
+    description: document.querySelector("#projectdescription").value, 
+  }; 
     
-    // you can't add an event listener, to something that hasn't been rendered
-    //Add an event listener for the form submit and pass it the function (callback)
+    projArray.push(newProjObj);
+    // const form = document.querySelector("#projform");
+    // form.reset(); 
+    projectsOnDom("#newDataDiv", projArray);
+
+// you can't add an event listener, to something that hasn't been rendered
+//Add an event listener for the form submit and pass it the function (callback)
     }
   }
 );
@@ -547,7 +550,7 @@ navDiv.addEventListener('click', event => {
 // *************** FOOTER ************* //
 
 // Dynamically render footer
-const footDiv = document.querySelector("#footer");
+//const footDiv = document.querySelector("#footer");
 const renderedFooter = () => {
   const footString =
   `
@@ -577,8 +580,7 @@ renderToDom("#footer", footString)
 // start app function
 const startApp = () => {
   renderedNavbar();
-  renderedSidebar();
+  rederedSidebar();
   renderedFooter();
-};
+}
 startApp();
-
