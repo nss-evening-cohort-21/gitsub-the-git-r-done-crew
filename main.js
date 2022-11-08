@@ -169,6 +169,7 @@ const renderedNavbar = () => {
   renderToDom("#navBar", navString)
 }; 
 
+
 // ************ PLEASE WRITE OVER ME *************** //  
 // ************ SIDEBAR GOES HERE *************** //
 // ************ REPLACE HTML PLS *************** //
@@ -222,6 +223,7 @@ const repoOnDom = (array) => {
     renderToDom("#newDataDiv", domString);
   }
 
+
 // Dynamically renders form that lets you create a repo
 navDiv.addEventListener('click', (mypersonalhell) => {
   if (mypersonalhell.target.id === "repoButton") {
@@ -232,17 +234,18 @@ navDiv.addEventListener('click', (mypersonalhell) => {
     <form id="i-hate-this-form">
       <div>Create a Repository</div>
         <label class="form-label">Repository Name</label>
-        <input class="form-control" id="new-repo-name">
+        <input class="form-control" id="new-repo-name" required>
       <div class="form-text">
         Great repository names are short and memorable. Need inspiration? How about <strong>${randomAdj[adj]}-${randomNoun[noun]}</strong>?
       </div>
       <div><label class="form-label">Description (optional)</label>
-        <input id="new-repo-descrip" class="form-control">
+        <input id="new-repo-descrip" class="form-control" required>
       </div>
     <button id="make-repo" type="submit" class="btn btn-success">Create a Repository</button>
     </form>
     `;
     renderToDom("#formHolder", renderedAddRepo)}
+    
 })
 
 
@@ -283,15 +286,15 @@ const filter = (array, overViewCardsString) => {
   
   return overViewArray;
   }
-
-
+  
+  
  //event for clicking and displaying pinnedRepos
  navDiv.addEventListener('click', taco => {
   if (taco.target.id === 'overviewButton') {
     cardsOnDom(pinnedRepos);
   }
-});
-
+  
+  
 const pinnedRepoForm = 
 `
 <form id="form">
@@ -329,10 +332,9 @@ const createPinnedRepo = (e) => {
 
 form.addEventListener('submit', createPinnedRepo);
 
+  
 
-
-
-
+// ****** CREATE NEW PROJECT BUTTON FUNCTION ****** //
 // to create unique ID. ticket explained: https://github.com/orgs/nss-evening-web-development/discussions/126 
 const createId = (array) => {
   if (array.length) {
@@ -348,7 +350,7 @@ const createId = (array) => {
 
 
 // ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** //
-// ****** ****** CLICK EVENT FOR BUTTON IN FORM DIV aka #formHolder below our "cardsOnDom"  ****** ****** //
+// ****** ****** CLICK EVENT FOR FORM DIV aka #formHolder below our "cardsOnDom"  ****** ****** //
 // ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** //
 
 formHolderDiv.addEventListener('click', (pleaseholdmyhand) => {
@@ -371,8 +373,6 @@ formHolderDiv.addEventListener('click', (pleaseholdmyhand) => {
   form.reset();
   repoOnDom(repoArray);
 
-  // ********** A PART OF PROJECTS BUTTON ************* //
-  // ****** CREATES NEW PROJECT BUTTON ****** //
   } else if (pleaseholdmyhand.target.id === "projectsubmit") {    
       const newProjObj = { 
         id: createId(projArray), //students.length + 1, 
@@ -391,10 +391,10 @@ formHolderDiv.addEventListener('click', (pleaseholdmyhand) => {
   }
 );
 
-
 // ****** ****** ****** ****** ****** ****** ****** ****** //
 // ****** ****** projectsButton IN navBar ****** ****** //
 // ****** ****** ****** ****** ****** ****** ****** ****** //
+
 
 //Projects Button in Navbar
 const projectsTopSection = () => {
@@ -465,6 +465,7 @@ const projectsOnDom = (aDiv, array) => {
       <button type="submit" class="btn btn-success" id="projectsubmit">Create project</button>
     </form>
     `;
+     
     renderToDom("#formHolder", projForm); 
   }; 
 
@@ -474,13 +475,9 @@ navDiv.addEventListener('click', event => {
     projectsTopSection();
     projectsOnDom('#newDataDiv', projArray);
     projectsBottomSection(); 
-
+    }
   }
-});
-
-
-
-
+);
 
 
 // **************** PACKAGES ******************* //
@@ -501,27 +498,23 @@ const packagesOnDom = (array) => {
   }
   renderToDom("#newDataDiv", domString);
 };
-const pkgsForm = 
-`
-<form id="pkgsform">
-  <div class="mb-3">
-    <label class="form-label">Create new package</label>
-    <input type="text" class="form-control" aria-describedby="Package Name" placeholder="package name" required>
-  </div>
-  <div class="mb-3">
-    <label for="exampleFormControlTextarea1" class="form-label">Description</label>
-    <div class="form-text">(optional)</div>
-    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
-  </div>
+ const pkgsForm = 
+ `
+ <form id="pkgsform">
+   <div class="mb-3">
+     <label class="form-label">Create new package</label>
+     <input type="text" class="form-control" aria-describedby="Package Name" placeholder="package name" required>
+   </div>
+   <div class="mb-3">
+     <label for="exampleFormControlTextarea1" class="form-label">Description</label>
+     <div class="form-text">(optional)</div>
+     <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+   </div>
   
-  <button type="submit" class="btn btn-success" id="createPackagesBtn">Create packages</button>
-</form>
-`;
+   <button type="submit" class="btn btn-success" id="createPackagesBtn">Create packages</button>
+ </form>
+ `;
 renderToDom("#formHolder", pkgsForm);
-
-
-
-
 
 
 
@@ -552,6 +545,8 @@ navDiv.addEventListener('click', event => {
 // *************** FOOTER ************** //
 // ***** Dynamically render footer ******//
 // *************** FOOTER ************* //
+
+// Dynamically render footer
 const footDiv = document.querySelector("#footer");
 const renderedFooter = () => {
   const footString =
@@ -579,11 +574,11 @@ renderToDom("#footer", footString)
 
 
 
-
 // start app function
-  const startApp = () => {
-    renderedNavbar();
-    rederedSidebar();
-    renderedFooter();
-  }
-  startApp();
+const startApp = () => {
+  renderedNavbar();
+  renderedSidebar();
+  renderedFooter();
+};
+startApp();
+
