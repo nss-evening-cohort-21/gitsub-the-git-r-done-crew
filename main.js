@@ -293,7 +293,7 @@ const filter = (array, overViewCardsString) => {
   if (taco.target.id === 'overviewButton') {
     cardsOnDom(pinnedRepos);
   }
-  
+});
   
 const pinnedRepoForm = 
 `
