@@ -9,32 +9,32 @@ const pinnedRepos = [
   {
     id: 2,
     type: 'Overview',
-    name: "gatsby-workshop",
-    description: "This workshop covers the fundamentals of developing fast, accesible sites with Gatsby, a React framework, and dive deep into the building blocks you'll need to build your own custom Gatsby sites."
+    name: "getting-started-with-open-source",
+    description: "This is a presentation on getting started with Open Source."
   },
   {
     id: 3,
     type: 'Overview',
-    name: "gatsby-workshop",
-    description: "This workshop covers the fundamentals of developing fast, accesible sites with Gatsby, a React framework, and dive deep into the building blocks you'll need to build your own custom Gatsby sites."
+    name: "Rebuild-Black-Business/RBB-Website",
+    description: "Website to help connect black-owned businesses with consumers and resources."
   },
   {
     id: 4,
     type: 'Overview',
-    name: "gatsby-workshop",
-    description: "This workshop covers the fundamentals of developing fast, accesible sites with Gatsby, a React framework, and dive deep into the building blocks you'll need to build your own custom Gatsby sites."
+    name: "React-Ladies",
+    description: "We're a group of women and non-binary ReactJS Enthusiasts in New York City (and beyond)."
   },
   {
     id: 5,
     type: 'Overview',
-    name: "gatsby-workshop",
-    description: "This workshop covers the fundamentals of developing fast, accesible sites with Gatsby, a React framework, and dive deep into the building blocks you'll need to build your own custom Gatsby sites."
+    name: "httriri",
+    description: "HTTRiRi - HTTP Status Codes as portrayed by Rihanna Gifs."
   },
   {
     id: 6,
     type: 'Overview',
-    name: "gatsby-workshop",
-    description: "This workshop covers the fundamentals of developing fast, accesible sites with Gatsby, a React framework, and dive deep into the building blocks you'll need to build your own custom Gatsby sites."
+    name: "affirmation-generator",
+    description: "A random affirmation generator written with ReactJS :-)"
   }
 ];
 
@@ -197,38 +197,24 @@ const filter = (array, overViewCardsString) => {
   }
 
 //Projects Button in Navbar
-const projectsTopSection = () => {
-  const searchProjects = 
-    `
-    <input class="form-control" type="text" placeholder="Search all projects" aria-label="default input example">
-    `;
-  let navString = `<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-}
+//const projectsTopSection = () => {
+ // const searchProjects = 
+   // `
+   // <input class="form-control" type="text" placeholder="Search all projects" aria-label="default input example">
+   //`;
+  //let navString = `<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+//}
 
 // Dynamically renders form that lets you create a repo
-navDiv.addEventListener('click', (mypersonalhell) => {
-  if (mypersonalhell.target.id === "repoButton") {
-  const adj = Math.floor(Math.random()*randomAdj.length);
-  const noun = Math.floor(Math.random()*randomNoun.length);
-  const renderedAddRepo = 
-    `
-    <form id="i-hate-this-form">
-      <div>Create a Repository</div>
-        <label class="form-label">Repository Name</label>
-        <input class="form-control" id="new-repo-name">
-      <div class="form-text">
-        Great repository names are short and memorable. Need inspiration? How about <strong>${randomAdj[adj]}-${randomNoun[noun]}</strong>?
-      </div>
-      <div><label class="form-label">Description (optional)</label>
-        <input id="new-repo-descrip" class="form-control">
-      </div>
-    <button id="make-repo" type="submit" class="btn btn-success">Create a Repository</button>
-    </form>
-    `;
-    renderToDom("#formHolder", renderedAddRepo)}
-})
+//navDiv.addEventListener('click', (mypersonalhell) => {
+  //if (mypersonalhell.target.id === "repoButton") {
+  //const adj = Math.floor(Math.random()*randomAdj.length);
+  //const noun = Math.floor(Math.random()*randomNoun.length);
+  //const renderedAddRepo = 
+  //  `
+  
 
-const formHolderDiv = document.querySelector("#formHolder");
+//const formHolderDiv = document.querySelector("#formHolder");
 
  //overViewTicker.addEventListener('click', () => {
   //const cardsAreOverView = filter(pinnedRepos, 'Overview');
@@ -277,7 +263,7 @@ const createPinnedRepo = (e) => {
   form.reset();
 }
 
-form.addEventListener('submit', createPinnedRepo);
+overviewForm.addEventListener('submit', createPinnedRepo);
 
 // start app function
   const startApp = () => {
