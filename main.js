@@ -71,14 +71,6 @@ const repoArray = [
   }
 ];
 
-const randomAdj = [
-  'arrogant', 'blithering', 'constipated', 'frisky', 'maniacal', 'quixotic', 'sexy', 'territorial', 'vengeful', 'zippy', 'existential', 'universal', 'nervous', 'toxic', 'fleek', 'sarcastic', 'pliable', 'whimsical', 'loyal', 'youthful', 'trustworthy'
-]
-
-const randomNoun = [
-  'chariot', 'pleonasm', 'wizard', 'spigot', 'aglet', 'guitar', 'hermit', 'bicycle', 'internship', 'honeysuckle', 'cornucopia', 'loudspeaker', 'zebra', 'malaise', 'xylophone', 'limosuine', 'toothbrush', 'explosion', 'taco', 'grandmother', 'process'
-]
-
 const projArray = [
   {
     id: 1,
@@ -106,7 +98,6 @@ const projArray = [
     description: "Work in progress." 
   }
 ];
-
 
   const packages = [
   {
@@ -140,19 +131,29 @@ const projArray = [
     description: "a single place for your team",
   },
 ]; 
-  
+
+const randomAdj = [
+  'arrogant', 'blithering', 'constipated', 'frisky', 'maniacal', 'quixotic', 'sexy', 'territorial', 'vengeful', 'zippy', 'existential', 'universal', 'nervous', 'toxic', 'fleek', 'sarcastic', 'pliable', 'whimsical', 'loyal', 'youthful', 'trustworthy'
+]
+
+const randomNoun = [
+  'chariot', 'pleonasm', 'wizard', 'spigot', 'aglet', 'guitar', 'hermit', 'bicycle', 'internship', 'honeysuckle', 'cornucopia', 'loudspeaker', 'zebra', 'malaise', 'xylophone', 'limosuine', 'toothbrush', 'explosion', 'taco', 'grandmother', 'process'
+]
+
+
 // Main Render to DOM Function called by other functions
 const renderToDom = (divId, htmlToRender) => {
   const selectedDiv = document.querySelector(divId);
   selectedDiv.innerHTML = htmlToRender;
 };
 
-
-
+//****************  QUERY SELECTOR **************** //
 const navDiv = document.querySelector("#navBar"); // Creates nav variable for event listeners
 
 
-// Renders navbar dynamically
+// *************** NAV BAR *************** //
+// Renders navbar dynamically ************* //
+// *************** NAV BAR *************** //
 const renderedNavbar = () => {
   const navString =
   `
@@ -168,22 +169,26 @@ const renderedNavbar = () => {
   renderToDom("#navBar", navString)
 }; 
 
-
+// ************ PLEASE WRITE OVER ME *************** //  
+// ************ SIDEBAR GOES HERE *************** //
+// ************ REPLACE HTML PLS *************** //
 const rederedSidebar = () => {
   const sideString = `
-  // ************ PLEASE WRITE OVER ME *************** //  
-// ************ SIDEBAR GOES HERE *************** //
-// ************ PLEASE REPLACE ME *************** //
-`
+  <div class="card text-bg-dark mb-3" style="max-width: 18rem;">
+  <div class="card-header">Header</div>
+  <div class="card-body">
+    <h5 class="card-title">Dark card title</h5>
+    <p class="card-text">SIDE BAR PLEASE REPLACE ME.</p>
+  </div>
+</div>
+`;
   renderToDom("#sideBar", sideString)
 };
 
-//****************  QUERY SELECTORS **************** //
-//****************  QUERY SELECTORS **************** //
-//****************  QUERY SELECTORS **************** //
 
+
+//****************  QUERY SELECTOR **************** //
 const formHolderDiv = document.querySelector("#formHolder");
-
 
 // ***************** REPO ARRAY ****************** //
 // ***************** REPO ARRAY ****************** //
@@ -244,9 +249,9 @@ navDiv.addEventListener('click', (mypersonalhell) => {
 
 
 
-// ************** PINNED REPOS  ************** //
-// ************** PINNED REPOS  ************** //
-// ************** PINNED REPOS  ************** //
+// ************** OVERVIEW BUTTON / PINNED REPOS  ************** //
+// ************** OVERVIEW BUTTON / PINNED REPOS  ************** //
+// ************** OVERVIEW BUTTON / PINNED REPOS  ************** //
 
 
 //cardsOnDom Function for Pinned Repos Array
@@ -327,7 +332,7 @@ form.addEventListener('submit', createPinnedRepo);
 
 
 
-// ****** CREATE NEW PROJECT BUTTON FUNCTION ****** //
+
 // to create unique ID. ticket explained: https://github.com/orgs/nss-evening-web-development/discussions/126 
 const createId = (array) => {
   if (array.length) {
@@ -343,13 +348,14 @@ const createId = (array) => {
 
 
 // ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** //
-// ****** ****** CLICK EVENT FOR FORM DIV aka #formHolder below our "cardsOnDom"  ****** ****** //
+// ****** ****** CLICK EVENT FOR BUTTON IN FORM DIV aka #formHolder below our "cardsOnDom"  ****** ****** //
 // ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** //
 
 formHolderDiv.addEventListener('click', (pleaseholdmyhand) => {
 
   pleaseholdmyhand.preventDefault();
 
+  // ************** A PART OF REPOSITORIES BUTTON ************ //
   if (pleaseholdmyhand.target.id === "make-repo") {
   const object = {
     id: repoArray.length+1,
@@ -365,6 +371,8 @@ formHolderDiv.addEventListener('click', (pleaseholdmyhand) => {
   form.reset();
   repoOnDom(repoArray);
 
+  // ********** A PART OF PROJECTS BUTTON ************* //
+  // ****** CREATES NEW PROJECT BUTTON ****** //
   } else if (pleaseholdmyhand.target.id === "projectsubmit") {    
       const newProjObj = { 
         id: createId(projArray), //students.length + 1, 
@@ -383,10 +391,10 @@ formHolderDiv.addEventListener('click', (pleaseholdmyhand) => {
   }
 );
 
+
 // ****** ****** ****** ****** ****** ****** ****** ****** //
 // ****** ****** projectsButton IN navBar ****** ****** //
 // ****** ****** ****** ****** ****** ****** ****** ****** //
-
 
 //Projects Button in Navbar
 const projectsTopSection = () => {
@@ -457,7 +465,6 @@ const projectsOnDom = (aDiv, array) => {
       <button type="submit" class="btn btn-success" id="projectsubmit">Create project</button>
     </form>
     `;
-     
     renderToDom("#formHolder", projForm); 
   }; 
 
@@ -474,6 +481,12 @@ navDiv.addEventListener('click', event => {
 
 
 
+
+
+// **************** PACKAGES ******************* //
+// **************** PACKAGES ******************* //
+// **************** PACKAGES ******************* //
+
 //adds pkgs on Dom
 const packagesOnDom = (array) => {
   let domString = ""; 
@@ -488,23 +501,23 @@ const packagesOnDom = (array) => {
   }
   renderToDom("#newDataDiv", domString);
 };
-// const pkgsForm = 
-// `
-// <form id="pkgsform">
-//   <div class="mb-3">
-//     <label class="form-label">Create new package</label>
-//     <input type="text" class="form-control" aria-describedby="Package Name" placeholder="package name" required>
-//   </div>
-//   <div class="mb-3">
-//     <label for="exampleFormControlTextarea1" class="form-label">Description</label>
-//     <div class="form-text">(optional)</div>
-//     <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
-//   </div>
+const pkgsForm = 
+`
+<form id="pkgsform">
+  <div class="mb-3">
+    <label class="form-label">Create new package</label>
+    <input type="text" class="form-control" aria-describedby="Package Name" placeholder="package name" required>
+  </div>
+  <div class="mb-3">
+    <label for="exampleFormControlTextarea1" class="form-label">Description</label>
+    <div class="form-text">(optional)</div>
+    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+  </div>
   
-//   <button type="submit" class="btn btn-success" id="createPackagesBtn">Create packages</button>
-// </form>
-// `;
-// renderToDom("#formHolder", pkgsForm);
+  <button type="submit" class="btn btn-success" id="createPackagesBtn">Create packages</button>
+</form>
+`;
+renderToDom("#formHolder", pkgsForm);
 
 
 
@@ -536,8 +549,9 @@ navDiv.addEventListener('click', event => {
 
 
 
-
-// Dynamically render footer
+// *************** FOOTER ************** //
+// ***** Dynamically render footer ******//
+// *************** FOOTER ************* //
 const footDiv = document.querySelector("#footer");
 const renderedFooter = () => {
   const footString =
@@ -569,7 +583,7 @@ renderToDom("#footer", footString)
 // start app function
   const startApp = () => {
     renderedNavbar();
-    renderedSidebar();
+    rederedSidebar();
     renderedFooter();
   }
   startApp();
