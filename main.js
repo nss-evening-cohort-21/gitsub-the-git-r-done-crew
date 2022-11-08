@@ -581,4 +581,3 @@ const startApp = () => {
   renderedFooter();
 };
 startApp();
-
