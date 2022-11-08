@@ -76,21 +76,32 @@ const projArray = [
   {
     id: 1,
     name: "Example 1", 
-    description: " Example descrip." 
+    description: " Example description." 
   },
   {
     id: 2,
     name: "my-goals", 
-    description: "My goals descrip." 
+    description: "My goals description." 
   },
   {
     id: 3,
     name: "Sample My Goals", 
     description: "Goals for the NSS Bootcamp." 
+  },
+  {
+    id: 4,
+    name: "Project Example 4", 
+    description: "Lorem ipsum dolor sit amet." 
+  },
+  {
+    id: 5,
+    name: "Project Example 5", 
+    description: "Work in progress." 
   }
 ];
 
-const packages = [
+
+  const packages = [
   {
     id: 1,
     name: "docker",
@@ -144,53 +155,26 @@ const renderedNavbar = () => {
   </div>
   </nav>
   `;
+  renderToDom("#navBar", navString)
+}; 
 
-renderToDom("#navBar", navString);
-};
-
-const renderedSidebar = () => {
-  const sideString =
-  `
-  <div id="side-pic">
-    <img src="images/DavidSPumpkins.jpeg" class="profile" alt="David S. Pumpkins">
-  </div>
-  <div id="side-name">
-    David S. Pumpkins
-  </div>
-  <div>
-    Scaring people stupid by being his own thing.
-    Owner of multiple haunted house franchises.
-    The skeletons are part of it.
-  </div>
-  <div>
-    <button type="button" class="btn btn-outline-info side-button">Follow</button>
-    <button type="button" class="btn btn-outline-info side-button">&hearts; Sponsor</button>
-    <button type="button" class="btn btn-outline-info side-button">...</button>
-  </div>
-  <div>
-
-  </div>
-  `;
-  renderToDom("#sideBar", sideString)
-}
+navDiv.addEventListener('click', taco => {
+  if (taco.target.id === 'repoButton') {
+    repoOnDom(repoArray);
+  }
+});
 
 // Puts repo search on DOM
 const repoSearch = document.querySelector("#repoButton");
 navDiv.addEventListener('click', (garbage) => { // Reads repoButton click
   if (garbage.target.id === "repoButton") {
+
   const renderedSearch = 
     `
-    <input id="ihatethis" class="form-control" type="text" placeholder="Find a repository" aria-label="default input example">  
-    `; // I don't really hate this, I just get into moods
+    <input id="ihatethis" class="form-control" type="text" placeholder="Find a repository" aria-label="default input example">
+    `;
   renderToDom("#searchForm", renderedSearch);}
 })
-
-// Renders repoArray on DOM after repoButton click
-navDiv.addEventListener('click', taco => { // Reads repoButton click
-  if (taco.target.id === 'repoButton') {
-    repoOnDom(repoArray);
-  }
-});
 
 const repoOnDom = (array) => {
   let domString = "";  // Starts function with empty string
@@ -207,6 +191,15 @@ const repoOnDom = (array) => {
     }
   // Renders HTML cards onto the DOM
     renderToDom("#newDataDiv", domString);
+  }
+
+//Projects Button in Navbar
+const projectsTopSection = () => {
+  const searchProjects = 
+    `
+    <input class="form-control" type="text" placeholder="Search all projects" aria-label="default input example">
+    `;
+  let navString = `<nav class="navbar navbar-expand-lg navbar-dark bg-dark">`
 }
 
 // Dynamically renders form that lets you create a repo
@@ -231,8 +224,6 @@ navDiv.addEventListener('click', (mypersonalhell) => {
     `; // Again, no real hate, more moods
     renderToDom("#formHolder", renderedAddRepo)}
 })
-
-
 const formHolderDiv = document.querySelector("#formHolder");
 
 formHolderDiv.addEventListener('click', (pleaseholdmyhand) => {
@@ -259,54 +250,116 @@ formHolderDiv.addEventListener('click', (pleaseholdmyhand) => {
 });
 
 //Projects Button in Navbar
-const projectsOnDom = (array) => {
-  let domString = "";
-  let topString = `<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-  <div class="container-fluid">
-    <a class="navbar-brand" href="#">Open Closed</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDarkDropdown" aria-controls="navbarNavDarkDropdown" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarNavDarkDropdown">
-      <ul class="navbar-nav">
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            Sort
-          </a>
-          <ul class="dropdown-menu dropdown-menu-dark">
-            <li><a class="dropdown-item" href="#">Action</a></li>
-            <li><a class="dropdown-item" href="#">Another action</a></li>
-            <li><a class="dropdown-item" href="#">Something else here</a></li>
-          </ul>
-        </li>
-      </ul>
-    </div>
-  </div>
-  </nav>`;
-  
-  for (const proj of array) {
-    domString += `
+
+  const projectsOnDom = (aDiv, array) => {
+    let projString = ""; 
+    for (const proj of array) {
+    projString += `
       <ul class="list-group list-group">
         <li class="list-group-item d-flex justify-content-between align-items-start">
           <div class="ms-2 me-auto">
             <div class="fw-bold">${proj.name}</div>
+            <div class="form-text">Updated some future property ago</div>
             ${proj.description}
           </div>
           <span class="bg rounded-pill">•••</span>
         </li>
       </ul>
     `;
-    let projString = topString + domString;
-    renderToDom('#newDataDiv', projString);  
+    };
+    renderToDom(aDiv, projString);  
+  };
+  
+  
+
+  const projectsBottomSection = () => {
+    const projForm =
+    `
+    <form id="projform">
+      <div class="mb-3">
+        <label class="form-label">Create a new project</label>
+        <input type="text" class="form-control" id="projname" aria-describedby="Project Name" placeholder="Example 2" required>
+      </div>
+      <div class="mb-3">
+        <label for="exampleFormControlTextarea1" class="form-label">Description</label>
+        <div class="form-text">(optional)</div>
+        <input type="text" class="form-control" id="projectdescription" rows="3"></input>
+      </div>
+      
+      <button type="submit" class="btn btn-success" id="projectsubmit">Create project</button>
+    </form>
+    `;
+    renderToDom("#formHolder", projForm);
   }; 
-};
+ 
 
 //click event to show Projects
 navDiv.addEventListener('click', event => {
   if (event.target.id === 'projectsButton') {
-    projectsOnDom(projArray);
+    projectsTopSection();
+    projectsOnDom('#newDataDiv', projArray);
+    projectsBottomSection(); 
+
   }
 });
+
+//adds pkgs on Dom
+const packagesOnDom = (array) => {
+  let domString = ""; 
+  for (const packages of array) {
+    domString += `<div class="card flex-wrap" style="width: 18rem;">
+    <div class="card-body">
+      <h5 class="card-title">${packages.name}</h5>
+      <p class="card-text">${packages.description}</p>
+      <button class="btn btn-primary" >Learn More</button>
+    </div>
+  </div>`;
+  }
+  renderToDom("#newDataDiv", domString);
+};
+const pkgsForm = 
+`
+<form id="pkgsform">
+  <div class="mb-3">
+    <label class="form-label">Create new package</label>
+    <input type="text" class="form-control" aria-describedby="Package Name" placeholder="package name" required>
+  </div>
+  <div class="mb-3">
+    <label for="exampleFormControlTextarea1" class="form-label">Description</label>
+    <div class="form-text">(optional)</div>
+    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+  </div>
+  
+  <button type="submit" class="btn btn-success" id="createPackagesBtn">Create packages</button>
+</form>
+`;
+renderToDom("#formHolder", pkgsForm);
+
+
+
+
+
+
+
+
+//deletes pkg
+
+//if (e.target.id.includes("delete")) {
+  //const [, id] = e.target.id.split("--");
+  //const index = packages.findIndex(e => e.id === Number(id));
+  //const removed = packages.splice(index, 1); 
+  //packages.push(removed[0]);
+  //packagesOnDom(packages);
+  
+
+
+navDiv.addEventListener('click', event => {
+  if (event.target.id === 'packagesButton') {
+    packagesOnDom(packages);
+  }
+});
+//Creates package
+
 
 // Dynamically render footer
 const footDiv = document.querySelector("#footer");
@@ -330,18 +383,13 @@ const renderedFooter = () => {
   </div>
   </nav>
   `;
-renderToDom("#footer", footString);
-}
+renderToDom("#footer", footString)  
+};
+
+
 
 const startApp = () => {
   renderedNavbar();
-  renderedSidebar();
   renderedFooter();
 };
 startApp(); 
-
-
-
-
-  
- 
