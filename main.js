@@ -100,6 +100,7 @@ const projArray = [
   }
 ];
 
+
   const packages = [
   {
     id: 1,
@@ -133,14 +134,15 @@ const projArray = [
   },
 ]; 
   
-// Render to DOM
+// Main Render to DOM Function called by other functions
 const renderToDom = (divId, htmlToRender) => {
   const selectedDiv = document.querySelector(divId);
   selectedDiv.innerHTML = htmlToRender;
 };
   
-// Dynamically rendered navbar
-const navDiv = document.querySelector("#navBar");
+const navDiv = document.querySelector("#navBar"); // Creates nav variable for event listeners
+
+// Renders navbar dynamically
 const renderedNavbar = () => {
   const navString =
   `
@@ -156,21 +158,6 @@ const renderedNavbar = () => {
   renderToDom("#navBar", navString)
 }; 
 
-
-const renderedSidebar = () => {
-  const sideString = 
-  `
-  <div class="card" style="width: 18rem;">
-  <div class="card-body">
-    <h5 class="card-title">Side Bar City</h5>
-    <p class="card-text">Text some text. Text.</p>
-    <a href="#" class="btn btn-primary">Go somewhere</a>
-  </div>
-</div>
-  `;
-  renderToDom("#sideBar", sideString)
-}
-
 navDiv.addEventListener('click', taco => {
   if (taco.target.id === 'repoButton') {
     repoOnDom(repoArray);
@@ -179,22 +166,22 @@ navDiv.addEventListener('click', taco => {
 
 // Puts repo search on DOM
 const repoSearch = document.querySelector("#repoButton");
-navDiv.addEventListener('click', (garbage) => {
+navDiv.addEventListener('click', (garbage) => { // Reads repoButton click
   if (garbage.target.id === "repoButton") {
 
   const renderedSearch = 
     `
     <input id="ihatethis" class="form-control" type="text" placeholder="Find a repository" aria-label="default input example">
     `;
-  renderToDom("#searchForm", renderedSearch);
-  })
-  
+  renderToDom("#searchForm", renderedSearch);}
+})
+
 const repoOnDom = (array) => {
   let domString = "";  // Starts function with empty string
   // Takes material from object and puts it into an HTML card after you click 'repo' button
-  for (const repo of array) {
+  for (const repo of array) { // goes through each object to get all the repos
     domString += `
-    <div class="card" style="width: 18rem;">
+    <div class="card column" style="width: 18rem;">
       <div class="card-body">
       <h5 class="card-title repo-name">${repo.name}</h5>
       <p class="card-text repo-description">${repo.description}</p>
@@ -212,14 +199,14 @@ const projectsTopSection = () => {
     `
     <input class="form-control" type="text" placeholder="Search all projects" aria-label="default input example">
     `;
-  let navString = `<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  let navString = `<nav class="navbar navbar-expand-lg navbar-dark bg-dark">`
 }
 
 // Dynamically renders form that lets you create a repo
 navDiv.addEventListener('click', (mypersonalhell) => {
   if (mypersonalhell.target.id === "repoButton") {
-  const adj = Math.floor(Math.random()*randomAdj.length);
-  const noun = Math.floor(Math.random()*randomNoun.length);
+  const adj = Math.floor(Math.random()*randomAdj.length);  // randomly generated
+  const noun = Math.floor(Math.random()*randomNoun.length); // repo names
   const renderedAddRepo = 
     `
     <form id="i-hate-this-form">
@@ -234,10 +221,9 @@ navDiv.addEventListener('click', (mypersonalhell) => {
       </div>
     <button id="make-repo" type="submit" class="btn btn-success">Create a Repository</button>
     </form>
-    `;
+    `; // Again, no real hate, more moods
     renderToDom("#formHolder", renderedAddRepo)}
 })
-
 const formHolderDiv = document.querySelector("#formHolder");
 
 formHolderDiv.addEventListener('click', (pleaseholdmyhand) => {
@@ -264,33 +250,6 @@ formHolderDiv.addEventListener('click', (pleaseholdmyhand) => {
 });
 
 //Projects Button in Navbar
-const projectsOnDom = (array) => {
-  let domString = "";
-  let topString = `<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-  <div class="container-fluid">
-    <a class="navbar-brand" href="#">Open Closed</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDarkDropdown" aria-controls="navbarNavDarkDropdown" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarNavDarkDropdown">
-      <ul class="navbar-nav">
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            Sort
-          </a>
-          <ul class="dropdown-menu dropdown-menu-dark">
-            <li><a class="dropdown-item" href="#">Action</a></li>
-            <li><a class="dropdown-item" href="#">Another action</a></li>
-            <li><a class="dropdown-item" href="#">Something else here</a></li>
-          </ul>
-        </li>
-      </ul>
-    </div>
-  </div>
-  </nav>`;
-  const upperString = searchProjects + navString;
-  renderToDom("#searchForm", upperString);
-};
 
   const projectsOnDom = (aDiv, array) => {
     let projString = ""; 
@@ -402,45 +361,6 @@ navDiv.addEventListener('click', event => {
 //Creates package
 
 
-
-// ****** CREATE NEW PROJECT BUTTON FUNCTION ****** //
-// to create unique ID. ticket explained: https://github.com/orgs/nss-evening-web-development/discussions/126 
-const createId = (array) => {
-  if (array.length) {
-    const idArray = [];
-    for (const el of array) {
-      idArray.push(el.id);
-    }
-    return Math.max(...idArray) + 1;
-  } else {
-    return 0;
-  }
-};
-
-const formHolderDiv = document.querySelector("#projForm");
-const createProject = (event) => {
-  event.preventDefault(); // EVERY TIME YOU CREATE A FORM, so it doesn't reset entirely
-  const newProjObj = { 
-    id: createId(projArray), //students.length + 1, 
-    name: document.querySelector("#projname").value,
-    description: document.querySelector("#projectdescription").value, 
-}; 
-//to test 
-//console.log(newProjObj); 
-projArray.push(newProjObj);
-const form = document.querySelector("#projform");
-form.reset(); 
-projectsOnDom("#newDataDiv", projArray);
-};
-// you can't add an event listener, to something that hasn't been rendered
-//Add an event listener for the form submit and pass it the function (callback)
-document.addEventListener('submit', createProject);
-
-
-
-
-
-
 // Dynamically render footer
 const footDiv = document.querySelector("#footer");
 const renderedFooter = () => {
@@ -470,8 +390,6 @@ renderToDom("#footer", footString)
 
 const startApp = () => {
   renderedNavbar();
-  renderedSidebar();
   renderedFooter();
-  
 };
 startApp(); 

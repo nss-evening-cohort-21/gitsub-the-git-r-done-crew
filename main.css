@@ -3,6 +3,19 @@
 body {
   background-color: darkslategray;
   color: azure;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.profile {
+  width: 200px;
+  height: 200px;
+  border-radius: 100%;
+}
+
+#class-description {
+  width: 300px;
 }
 
 strong {
@@ -20,4 +33,27 @@ em, .repo-description, .repo-name {
 a, em {
   margin-left: 10px;
   margin-right: 10px;
-};
+}
+
+#middleContent {
+  display: flex;
+  margin: 20px;
+}
+
+#toTheLeft {
+  width: 25%;
+}
+
+#toTheRight {
+  margin-left: 20px;
+}
+
+#footer {
+  align-content: bottom;
+  margin-top: auto;
+}
+
+.side-button {
+  color: azure;
+  border-color: azure;
+}
